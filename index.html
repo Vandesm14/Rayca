@@ -66,25 +66,37 @@
         The <i>only</i> <abbr title="Nice, Fungible Text">NFT</abbr> marketplace!
       </summary>
       <p>
-        We offer a new wave of NFTs to the ever-growing metaverse! Every NFT you
-        see on this page is a unique, randomly generated string called
+        We offer a new wave of NFTs to the ever-growing metaverse! Every item
+        you see on this page is a unique, randomly generated string called
         <i>Nice, Fungible Text</i> (or NFT for short).
       </p>
       <p>
-        <i>Nice, Fungible Text</i> is a new kind of text that can be generated, stored,
-        and shared across the web! It's a new way to express yourself that is
-        accessible to everyone. Just copy the token and it's yours!
+        <i>Nice, Fungible Text</i> is a new kind of text that can be generated,
+        stored, and shared across the web! It's a new way to express yourself
+        that is accessible to everyone. Just copy the token and it's yours!
       </p>
       <p>
         Our prices are competetive, affordable, and fair. If you are not 100%
-        satisfied with your NFT, you can always remove the link from your
-        browser history for a full refund. No more painfully slow transactions,
-        private keys, or volitile currencies.
+        satisfied with your NFT, you can remove the link from your
+        browser history <i>anytime</i> for a <b>full</b> refund. No gass fees or
+        private keys, just a <i>simple click</i>.
       </p>
       <p>
         It's simple and easy to get started with <i>Nice, Fungible Text</i> so
         try one for yourself today!
       </p>
+      <!-- <p>
+        <b>An avid developer:</b>
+        <blockquote>
+          Would you look at that? The blockchain says you own this apple!
+          <br>
+          *chuckles*
+          <br>
+          Congr- FUCK!
+          <br><br>
+          ~ <a target="_blank" href="https://cdn.discordapp.com/attachments/903124059255078943/943641064160518184/mr_blockchain.mp4">Jimmy</a>
+        </blockquote>
+      </p> -->
     </details>
   </header>
 
@@ -139,16 +151,8 @@
       return res + "│\n└────────────────────┘";
     }
 
-    const token = new URLSearchParams(location.search).get("token");
-    const isValidToken = (token) => {
-      if (!token) return false;
-      if (token.length !== 68) return false;
-      if (/[^A-Za-z0-9+/=]/.test(token)) return false;
-      return true;
-    };
-
-    if (!isValidToken(token)) {
-      for (let i = 0; i < 100; i++) {
+    const appendMore = (amount = 20) => {
+      for (let i = 0; i < amount; i++) {
         const el = document.createElement("p");
         const art = gen();
 
@@ -159,6 +163,32 @@
 
         document.getElementById("list").appendChild(el);
       }
+    }
+
+    const scrollListener = () => {
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+      } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        appendMore();
+      }
+    };
+
+    const token = new URLSearchParams(location.search).get("token");
+    const isValidToken = (token) => {
+      if (!token) return false;
+      if (token.length !== 68) return false;
+      if (/[^A-Za-z0-9+/=]/.test(token)) return false;
+      return true;
+    };
+
+    if (!isValidToken(token)) {
+      document.addEventListener('scroll', scrollListener, {
+        passive: true
+      });
+      appendMore(10);
     } else {
       const el = document.createElement("p");
       el.innerHTML = view(decomp(de(token))).replace(/ /g, "&nbsp;");

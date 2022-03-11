@@ -188,7 +188,7 @@
       document.addEventListener('scroll', scrollListener, {
         passive: true
       });
-      appendMore(10);
+      appendMore();
     } else {
       const el = document.createElement("p");
       el.innerHTML = view(decomp(de(token))).replace(/ /g, "&nbsp;");

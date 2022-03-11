@@ -48,25 +48,29 @@ function view(data) {
 
 const appendMore = (amount = 20) => {
   for (let i = 0; i < amount; i++) {
-    const el = document.createElement("p");
+    const container = document.createElement("a");
     const art = gen();
 
-    el.innerHTML = view(art).replace(/ /g, '&nbsp;');
-    el.innerHTML += `<a href="?token=${ser(comp(art))}">
-      <br><i>$${art.reduce((p, c) => p + c)}</i>
-    </a>`;
+    container.href = "javascript: void(0);";
+    container.title = "Click to add to basket";
+    container.innerHTML = view(art).replace(/ /g, "&nbsp;");
 
-    document.getElementById("list").appendChild(el);
+    container.addEventListener("click", () => {
+      navigator.clipboard.writeText(ser(comp(art)));
+      container.blur();
+    });
+
+    document.getElementById("nfts").appendChild(container);
   }
-}
+};
 
 const scrollListener = () => {
   const {
     scrollTop,
     scrollHeight,
-    clientHeight
+    clientHeight,
   } = document.documentElement;
-  if (scrollTop + clientHeight >= scrollHeight - 5) {
+  if (scrollTop + clientHeight >= scrollHeight - 400) {
     appendMore();
   }
 };
@@ -80,8 +84,8 @@ const isValidToken = (token) => {
 };
 
 if (!isValidToken(token)) {
-  document.addEventListener('scroll', scrollListener, {
-    passive: true
+  document.addEventListener("scroll", scrollListener, {
+    passive: true,
   });
   appendMore();
 } else {
@@ -89,5 +93,5 @@ if (!isValidToken(token)) {
   el.innerHTML = view(decomp(de(token))).replace(/ /g, "&nbsp;");
   el.innerHTML += `<br><i>$${decomp(de(token)).reduce((p, c) => p + c)}</i>`;
   el.innerHTML += `<br><br><a href="/">&lt;- Go back</a>`;
-  document.getElementById("list").appendChild(el);
+  document.getElementById("nfts").appendChild(el);
 }

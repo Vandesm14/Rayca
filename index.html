@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NFT - Nice Fungible Text</title>
+  <title>RASCII, the largest NFT marketplace</title>
 
   <style>
     @font-face {
@@ -12,7 +12,6 @@
       font-family: "Nunito";
       font-weight: 400;
     }
-
     @font-face {
       src: url("assets/Nunito-Bold.ttf");
       font-family: "Nunito";
@@ -20,98 +19,139 @@
     }
 
     body {
-      max-width: 640px;
-
-      margin: 3rem auto;
       padding: 0 2rem;
 
       background-color: hsl(0, 0%, 99.6%);
       color: hsl(0, 0%, 14.1%);
 
       font-family: "Nunito", "Helvetica Neue", "Helvetica", sans-serif;
-      font-size: max(1em, 18px);
+      font-size: max(1rem, 18px);
       line-height: 1.4;
     }
-
-    .mono {
-      font-family: monospace;
+    body > * {
+      max-width: 40rem;
+      margin: 3rem auto;
     }
 
-    #list {
+    h1, h2 { line-height: 1.2; }
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.25em; }
+
+    .text-center { text-align: center; }
+
+    .side {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(22ch, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+      gap: 1rem;
     }
+    .side > * { padding: 1rem; }
+    .side h2 { font-size: 1em; }
 
-    #list>p {
-      width: 22ch;
-      text-align: center;
-    }
+    main { max-width: 75rem; }
+    main > a {
+      color: inherit;
 
-    details {
-      border-radius: 4px;
-      padding: .5em .5em 0;
-    }
+      text-decoration: none;
+      font-family: monospace;
+      white-space: pre-wrap;
 
-    summary {
-      font-weight: bold;
-      margin: -.5em -.5em 0;
-      padding: .5em;
+      transition: transform ease-out 100ms;
     }
-
-    details[open] {
-      padding: .5em;
-    }
-
-    details[open] summary {
-      border-bottom: 1px solid #aaa;
-      margin-bottom: .5em;
-    }
+    main > a:hover, main > a:focus { transform: scale(1.05); }
   </style>
 </head>
 
 <body>
   <header>
-    <details>
-      <summary>
-        The <i>only</i> <abbr title="Nice Fungible Text">NFT</abbr> marketplace!
-      </summary>
-      <p>
-        We offer a new wave of NFTs to the ever-growing metaverse! Every item
-        you see on this page is a unique, randomly generated string called
-        <i>Nice, Fungible Text</i> (or NFT for short).
-      </p>
-      <p>
-        <i><dfn title="Nice, Fungible Text">Nice, Fungible Text</dfn></i> is a
-        new kind of text that can be generated, stored, and shared across the
-        web! It's a new way to express yourself that is accessible to everyone.
-        Just copy the token and it's yours!
-      </p>
-      <p>
-        Our prices are competetive, affordable, and fair. If you are not 100%
-        satisfied with your NFT, you can remove the link from your
-        browser history <i>anytime</i> for a <b>full</b> refund. No gass fees or
-        private keys, just a <i>simple click</i>.
-      </p>
-      <p>
-        It's simple and easy to get started with <i>Nice, Fungible Text</i> so
-        try one for yourself today!
-      </p>
-    </details>
+    <h1>Discover and collect minimal effort NFTs</h1>
+    <p>
+      RASCII is the world's largest and <strong>only</strong> marketplace for
+      NFTs that you can say you own.
+    </p>
 
-    <details>
-      <summary>
-        We provide the <b>largest</b> and <b>only</b> NFTs that you can truly
-        own.
-      </summary>
+    <section class="side text-center">
+      <div>
+        <h2>Collect the ones you like</h2>
+        <p>
+          All of our computer-made NFTs are curated to look and feel unqiue
+          while being easily disguisable as one-another.
+        </p>
+      </div>
+
+      <div>
+        <h2>Copy the ones you like</h2>
+        <p>
+          Once you've found an NFT you like, feel free to pretend you own
+          it&mdash;as long as you don't say you do, you don't.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Our <abbr title="Non Fucking Tolerable">NFT</abbr>s</h2>
       <p>
-        Since our NFTs aren't just links to some resource&mdash;you get
-        security in knowing that you still have ownership of your NFT even if
-        we were to no longer exist.
+        We offer computer-generated ASCII art that is compressed and serialised
+        into a some-what random looking token that you can portray as owned by
+        you.
       </p>
-    </details>
+      <p>
+        Unlike any other NFT, you actually have the data, no hyper-link
+        required! Now that's pretty damn cool&mdash;though you can only view it
+        on this site.
+      </p>
+    </section>
   </header>
 
-  <main id="list" class="mono"></main>
+  <hr>
+
+  <main id="nfts" class="side text-center"></main>
+
+  <!-- make the "add to cart" button copy to clipboard -->
+
+  <!-- <p><small>
+    Our NFTs are open for anyone to own, even if an owner already owns an
+    owned NFT
+  </small></p>
+  <details>
+    <summary>
+      The <i>only</i> <abbr title="Nice Fungible Text">NFT</abbr> marketplace!
+    </summary>
+    <p>
+      We offer a new wave of NFTs to the ever-growing metaverse! Every item
+      you see on this page is a unique, randomly generated string called
+      <i>Nice, Fungible Text</i> (or NFT for short).
+    </p>
+    <p>
+      <i><dfn title="Nice, Fungible Text">Nice, Fungible Text</dfn></i> is a
+      new kind of text that can be generated, stored, and shared across the
+      web! It's a new way to express yourself that is accessible to everyone.
+      Just copy the token and it's yours!
+    </p>
+    <p>
+      Our prices are competetive, affordable, and fair. If you are not 100%
+      satisfied with your NFT, you can remove the link from your
+      browser history <i>anytime</i> for a <b>full</b> refund. No gass fees or
+      private keys, just a <i>simple click</i>.
+    </p>
+    <p>
+      It's simple and easy to get started with <i>Nice, Fungible Text</i> so
+      try one for yourself today!
+    </p>
+  </details>
+
+  <details>
+    <summary>
+      We provide the <b>largest</b> and <b>only</b> NFTs that you can truly
+      own.
+    </summary>
+    <p>
+      Since our NFTs aren't just links to some resource&mdash;you get
+      security in knowing that you still have ownership of your NFT even if
+      we were to no longer exist.
+    </p>
+  </details> -->
+
+  <!-- <main id="list" class="mono"></main> -->
 
   <script defer src="script.js"></script>
 </body>

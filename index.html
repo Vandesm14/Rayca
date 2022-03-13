@@ -1,158 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>RASCII, the largest NFT marketplace</title>
+    <title>RAYCA, the only Random ASCII You Can Admire</title>
 
-  <style>
-    @font-face {
-      src: url("assets/Nunito-Regular.ttf");
-      font-family: "Nunito";
-      font-weight: 400;
-    }
-    @font-face {
-      src: url("assets/Nunito-Bold.ttf");
-      font-family: "Nunito";
-      font-weight: 700;
-    }
+    <style>
+      @font-face {
+        src: url("assets/SpaceMono-Regular.ttf");
+        font-family: "Space Mono";
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        src: url("assets/SpaceMono-RegularItalic.ttf");
+        font-family: "Space Mono";
+        font-weight: 400;
+        font-style: italic;
+      }
+      @font-face {
+        src: url("assets/SpaceMono-Bold.ttf");
+        font-family: "Space Mono";
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        src: url("assets/SpaceMono-BoldItalic.ttf");
+        font-family: "Space Mono";
+        font-weight: 700;
+        font-style: italic;
+      }
 
-    body {
-      padding: 0 2rem;
+      @font-face {
+        src: url("assets/Montserrat-Black.ttf");
+        font-family: "Montserrat";
+        font-weight: 900;
+        font-style: normal;
+      }
+      @font-face {
+        src: url("assets/Montserrat-BlackItalic.ttf");
+        font-family: "Montserrat";
+        font-weight: 900;
+        font-style: italic;
+      }
 
-      background-color: hsl(0, 0%, 99.6%);
-      color: hsl(0, 0%, 14.1%);
+      :root { font-size: max(1rem, 18px); }
 
-      font-family: "Nunito", "Helvetica Neue", "Helvetica", sans-serif;
-      font-size: max(1rem, 18px);
-      line-height: 1.4;
-    }
-    body > * {
-      max-width: 40rem;
-      margin: 3rem auto;
-    }
+      html { scroll-behavior: smooth; }
+      body {
+        padding: 0 2rem;
 
-    h1, h2 { line-height: 1.2; }
-    h1 { font-size: 1.5em; }
-    h2 { font-size: 1.25em; }
+        background-color: hsl(0, 0%, 99.6%);
+        color: hsl(0, 0%, 14.1%);
 
-    .text-center { text-align: center; }
+        font-family: "Space Mono", "Courier New", "Courier", monospace;
+        line-height: 1.4;
+      }
+      body > * {
+        max-width: 45rem;
+        margin: 3rem auto;
+      }
 
-    .side {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
-      gap: 1rem;
-    }
-    .side > * { padding: 1rem; }
-    .side h2 { font-size: 1em; }
+      h1, h2 {
+        font-family: "Montserrat", "Arial", "Helvetica", sans-serif;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
 
-    main { max-width: 75rem; }
-    main > a {
-      color: inherit;
+      a { opacity: 0.85; }
+      a:hover, a:focus { opacity: 1; }
 
-      text-decoration: none;
-      font-family: monospace;
-      white-space: pre-wrap;
+      main { max-width: 70rem; }
+      main > h2 {
+        max-width: 45rem;
+        margin-inline: auto;
+      }
 
-      transition: transform ease-out 100ms;
-    }
-    main > a:hover, main > a:focus { transform: scale(1.05); }
-  </style>
-</head>
+      footer {
+        position: sticky;
+        bottom: 2rem;
 
-<body>
-  <header>
-    <h1>Discover and collect minimal effort NFTs</h1>
-    <p>
-      RASCII is the world's largest and <strong>only</strong> marketplace for
-      NFTs that you can say you own.
-    </p>
+        width: 2rem;
+        height: 2rem;
+        margin-inline: auto 0;
 
-    <section class="side text-center">
-      <div>
-        <h2>Collect the ones you like</h2>
-        <p>
-          All of our computer-made NFTs are curated to look and feel unqiue
-          while being easily disguisable as one-another.
-        </p>
-      </div>
+        line-height: 2rem;
+        text-align: center;
 
-      <div>
-        <h2>Copy the ones you like</h2>
-        <p>
-          Once you've found an NFT you like, feel free to pretend you own
-          it&mdash;as long as you don't say you do, you don't.
-        </p>
-      </div>
-    </section>
+        border-radius: 3px;
 
-    <section>
-      <h2>Our <abbr title="Non Fucking Tolerable">NFT</abbr>s</h2>
+        background-color: hsla(0, 0%, 99.6%, 0.85);
+      }
+      footer > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        gap: 1rem;
+        place-items: center;
+      }
+
+      .card {
+        width: fit-content;
+        padding: 1rem 2rem;
+        text-align: center;
+      }
+      .card > * { display: block; }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Discover and collect computer-generated NFTs</h1>
       <p>
-        We offer computer-generated ASCII art that is compressed and serialised
-        into a some-what random looking token that you can portray as owned by
-        you.
+        We are the world's largest and <strong>only</strong> marketplace for
+        NFTs that you can <em>say</em> you own.
       </p>
-      <p>
-        Unlike any other NFT, you actually have the data, no hyper-link
-        required! Now that's pretty damn cool&mdash;though you can only view it
-        on this site.
-      </p>
-    </section>
-  </header>
+      <a href="#our-art">&darr; See our art &darr;</a>
 
-  <hr>
+      <section id="what-is-rayca">
+        <h2><a href="#what-is-rayca">#</a> What is RAYCA?</h2>
+        <p>
+          <b><def>RAYCA</def></b> is a collection of <b>R</b>andom <b>A</b>SCII
+          that <b>Y</b>ou <b>C</b>an <b>A</b>dmire; procedurally generated by a
+          computer using the simplest of algorithms.
+        </p>
+        <p>
+          We autonomously curate the art generated, such that it is
+          <i>smooshed</i> into a format resembling a random token that you can
+          <strong>pseudo</strong>-own.
+        </p>
+        <p>
+          All the art generated can easily be viewed on this site by holding on
+          to the tokens you collect.
+        </p>
+      </section>
 
-  <main id="nfts" class="side text-center"></main>
+      <section id="who-is-rayca">
+        <h2><a href="#who-is-rayca">#</a> Who is RAYCA?</h2>
+        <p>
+          We are a <a href="https://thedevbird.com" title="Shane">couple</a> of
+          <a href="https://leonski.dev" title="Leon">friends</a> who think you
+          should have access to the freshest computer-generated art.
+        </p>
+        <p>
+          That's why all the art you see here is generated
+          <strong>on-the-fly</strong> for your viewing pleasure.
+        </p>
+      </section>
+    </header>
 
-  <!-- make the "add to cart" button copy to clipboard -->
+    <main id="our-art">
+      <h2><a href="#our-art">#</a> Our art</h2>
+    </main>
 
-  <!-- <p><small>
-    Our NFTs are open for anyone to own, even if an owner already owns an
-    owned NFT
-  </small></p>
-  <details>
-    <summary>
-      The <i>only</i> <abbr title="Nice Fungible Text">NFT</abbr> marketplace!
-    </summary>
-    <p>
-      We offer a new wave of NFTs to the ever-growing metaverse! Every item
-      you see on this page is a unique, randomly generated string called
-      <i>Nice, Fungible Text</i> (or NFT for short).
-    </p>
-    <p>
-      <i><dfn title="Nice, Fungible Text">Nice, Fungible Text</dfn></i> is a
-      new kind of text that can be generated, stored, and shared across the
-      web! It's a new way to express yourself that is accessible to everyone.
-      Just copy the token and it's yours!
-    </p>
-    <p>
-      Our prices are competetive, affordable, and fair. If you are not 100%
-      satisfied with your NFT, you can remove the link from your
-      browser history <i>anytime</i> for a <b>full</b> refund. No gass fees or
-      private keys, just a <i>simple click</i>.
-    </p>
-    <p>
-      It's simple and easy to get started with <i>Nice, Fungible Text</i> so
-      try one for yourself today!
-    </p>
-  </details>
+    <footer>
+      <a href="#" title="Back to top">&uarr;</a>
+    </footer>
 
-  <details>
-    <summary>
-      We provide the <b>largest</b> and <b>only</b> NFTs that you can truly
-      own.
-    </summary>
-    <p>
-      Since our NFTs aren't just links to some resource&mdash;you get
-      security in knowing that you still have ownership of your NFT even if
-      we were to no longer exist.
-    </p>
-  </details> -->
+    <script defer>
+      const WIDTH = 20;
+      const HEIGHT = 10;
+      const CHARS = [" ", "-", "="];
 
-  <!-- <main id="list" class="mono"></main> -->
+      function gen() {
+        return Array(WIDTH * HEIGHT).fill(0).map(() => {
+          return Math.floor(Math.random() * CHARS.length);
+        });
+      }
 
-  <script defer src="script.js"></script>
-</body>
+      function comp(data) {
+        return Array((WIDTH * HEIGHT) / 4).fill(0).map((c, i) => {
+          i = i * 4;
+          return (data[i + 3] << 6) | (data[i + 2] << 4) | (data[i + 1] << 2) | data[i];
+        });
+      }
+
+      function decomp(data) {
+        return Array(WIDTH * HEIGHT).fill(0).map((c, i) => {
+          return ((data[Math.floor(i / 4)] >> (i % 4) * 2) & 0x3);
+        });
+      }
+
+      function ser(data) {
+        return btoa(data.map((v) => String.fromCodePoint(v)).join(""));
+      }
+
+      function deser(data) {
+        return atob(data).split("").map((v) => v.codePointAt(0));
+      }
+
+      function view(data) {
+        let res = `┌${"─".repeat(20)}┐\n|`;
+        for (let i = 0; i < data.length; i++) {
+          if (i % WIDTH === 0 && i !== 0) res += "│\n│";
+          res += CHARS[data[i]];
+        }
+        return res + `|\n└${"─".repeat(20)}┘`;
+      }
+
+      function card() {
+        const art = gen();
+
+        const card = document.createElement("div");
+        card.setAttribute("aria-label", "art");
+        card.classList.add("card");
+
+        const ascii = document.createElement("code");
+        ascii.innerHTML = view(art).replace(/ /g, "&nbsp;").replace(/\n/g, "<br>");
+
+        const cta = document.createElement("a");
+        cta.href = "?token=" + ser(comp(art));
+        cta.innerText = "Own the hyper-link";
+        cta.addEventListener("click", (e) => {
+          e.preventDefault();
+          navigator.clipboard.writeText(cta.href);
+
+          const originalInnerText = cta.innerText;
+          cta.innerText = "Copied!";
+          setTimeout(() => cta.innerText = originalInnerText, 2000);
+        });
+
+        card.appendChild(ascii);
+        card.appendChild(cta);
+
+        return card;
+      }
+
+      const INF_SCROLL_OFF = 400;
+      const CARDS_TO_INSERT = 16;
+
+      const artList = document.createElement("div");
+      artList.classList.add("list");
+      document.getElementById("our-art").appendChild(artList);
+
+      function nextCards() {
+        for (let i = 0; i < CARDS_TO_INSERT; i++) {
+          artList.appendChild(card());
+        }
+      }
+      nextCards();
+
+      document.addEventListener("scroll", () => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+        if (scrollTop + clientHeight >= scrollHeight - INF_SCROLL_OFF) {
+          nextCards();
+        }
+      }, { passive: true });
+    </script>
+  </body>
 </html>

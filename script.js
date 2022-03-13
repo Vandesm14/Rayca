@@ -46,21 +46,34 @@ function view(data) {
   return res + "│\n└────────────────────┘";
 }
 
+function html(data) {
+  data = view(data);
+
+  const card = document.createElement("button");
+  card.classList.add("card");
+  card.setAttribute("aria-label", "nft");
+
+  return card;
+}
+
+const nfts = document.getElementById("our-art");
+console.log(nfts);
+
 const appendMore = (amount = 20) => {
   for (let i = 0; i < amount; i++) {
-    const container = document.createElement("a");
-    const art = gen();
+    // const container = document.createElement("a");
+    // const art = gen();
 
-    container.href = "javascript: void(0);";
-    container.title = "Click to add to basket";
-    container.innerHTML = view(art).replace(/ /g, "&nbsp;");
+    // container.href = "javascript: void(0);";
+    // container.title = "Click to add to basket";
+    // container.innerHTML = view(art).replace(/ /g, "&nbsp;");
 
-    container.addEventListener("click", () => {
-      navigator.clipboard.writeText(ser(comp(art)));
-      container.blur();
-    });
+    // container.addEventListener("click", () => {
+    //   navigator.clipboard.writeText(ser(comp(art)));
+    //   container.blur();
+    // });
 
-    document.getElementById("nfts").appendChild(container);
+    document.getElementById("nfts").appendChild(html(gen()));
   }
 };
 

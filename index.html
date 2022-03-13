@@ -174,6 +174,12 @@
       </section>
     </header>
 
+    <div id="modal">
+      <div id="modal-close">&times;</div>
+      <code id="modal-content">
+      </code>
+    </div>
+
     <main id="our-art">
       <h2><a href="#our-art">#</a> Our art</h2>
     </main>
@@ -223,8 +229,8 @@
         return res + `|\n└${"─".repeat(20)}┘`;
       }
 
-      function card() {
-        const art = gen();
+      function card(data) {
+        const art = data ?? gen();
 
         const card = document.createElement("div");
         card.setAttribute("aria-label", "art");
@@ -233,9 +239,12 @@
         const ascii = document.createElement("code");
         ascii.innerHTML = view(art).replace(/ /g, "&nbsp;").replace(/\n/g, "<br>");
 
+        const number = document.createElement("span");
+        number.innerHTML = `#${art.map((el, i) => String(el + i).slice(-1)).slice(0, 8).join('')}`;
+
         const cta = document.createElement("a");
         cta.href = "?token=" + ser(comp(art));
-        cta.innerText = "Own a copy of this hyper-link";
+        cta.innerText = "Own a copy";
         cta.addEventListener("click", (e) => {
           e.preventDefault();
           navigator.clipboard.writeText(cta.href);
@@ -246,6 +255,7 @@
         });
 
         card.appendChild(ascii);
+        card.appendChild(number);
         card.appendChild(cta);
 
         return card;
@@ -254,9 +264,18 @@
       const INF_SCROLL_OFF = 400;
       const CARDS_TO_INSERT = 16;
 
+      const queryToken = new URLSearchParams(window.location.search).get("token");
+
       const artList = document.createElement("div");
       artList.classList.add("list");
       document.getElementById("our-art").appendChild(artList);
+
+      if (queryToken) {
+        const heading = document.getElementById("heading");
+        const headingLink = document.getElementById("heading-link");
+        const cardFromUrl = card(decomp(deser(queryToken)));
+        artList.appendChild(cardFromUrl);
+      }
 
       function nextCards() {
         for (let i = 0; i < CARDS_TO_INSERT; i++) {

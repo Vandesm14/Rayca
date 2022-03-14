@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "rm -rf ./docs && parcel build ./src/index.html --dist-dir ./docs",
+    "fmt": "prettier --write ./src",
+    "fmt:check": "prettier ./src",
+    "start": "rm -rf ./docs && parcel ./src/index.html --dist-dir ./docs -p 5500"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.3.2",
+    "parcel": "^2.3.2",
+    "prettier": "^2.5.1"
+  }
+}

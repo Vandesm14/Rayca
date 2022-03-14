@@ -113,7 +113,7 @@
       max-width: 70rem;
     }
 
-    main>h2 {
+    main>h2, main>p {
       max-width: 45rem;
 
       margin-inline: auto;
@@ -142,7 +142,7 @@
       display: grid;
 
       gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
       place-items: center;
     }
 
@@ -152,7 +152,10 @@
     }
 
     .card>code {
-      line-height: 0.801rem;
+      line-height: 0.55rem;
+      border: 2px solid black;
+      padding: 0.3rem 0.2rem;
+      margin: 0.4rem;
     }
 
     .card>* {
@@ -273,6 +276,9 @@
 
   <main id="our-art">
     <h2><a href="#our-art">#</a> Our art</h2>
+    <p>
+      <i>Sorted by popularity</i>
+    </p>
   </main>
 
   <footer>
@@ -364,13 +370,11 @@
     }
 
     function text(data, width, border) {
-      return (border ? "┌" + "─".repeat(width) + "┐\n│" : "") +
-        data.reduce((p, c, i) => {
+      return data.reduce((p, c, i) => {
           let res = "";
-          if (i % WIDTH === 0) res += border ? "│\n│" : "\n";
+          if (i % WIDTH === 0) res += "\n";
           return p + res + c;
-        }) +
-        (border ? "│\n" + "└" + "─".repeat(width) + "┘" : "");
+        })
     }
 
     function mulberry32(a) {
@@ -384,8 +388,8 @@
     const SEED = 1337 ^ 0xdeadbeef;
     const random = mulberry32(SEED);
 
-    const WIDTH = 12;
-    const HEIGHT = 8;
+    const WIDTH = 10;
+    const HEIGHT = 10;
     const CHARS = [" ", "-", "="];
 
     function html(data) {

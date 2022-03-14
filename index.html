@@ -1,352 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>RAYCA, the only Random ASCII You Can Admire</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary Meta Tags -->
-    <title>RAYCA</title>
-    <meta name="title" content="RAYCA">
-    <meta name="description" content="We are the world's largest and only marketplace for plain text NFTs that you can say you own.">
+  <title>RAYCA, the only Random ASCII You Can Admire</title>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rayca.art/">
-    <meta property="og:title" content="RAYCA">
-    <meta property="og:description" content="We are the world's largest and only marketplace for plain text NFTs that you can say you own.">
-    <meta property="og:image" content="https://rayca.art/banner.png">
+  <!-- Primary Meta Tags -->
+  <title>RAYCA</title>
+  <meta name="title" content="RAYCA">
+  <meta name="description"
+    content="We are the world's largest and only marketplace for plain text NFTs that you can say you own.">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rayca.art/">
-    <meta property="twitter:title" content="RAYCA">
-    <meta property="twitter:description" content="We are the world's largest and only marketplace for plain text NFTs that you can say you own.">
-    <meta property="twitter:image" content="https://rayca.art/banner.png">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rayca.art/">
+  <meta property="og:title" content="RAYCA">
+  <meta property="og:description"
+    content="We are the world's largest and only marketplace for plain text NFTs that you can say you own.">
+  <meta property="og:image" content="https://rayca.art/banner.png">
 
-    <style>
-      @font-face {
-        src: url("assets/SpaceMono-Regular.ttf");
-        font-family: "Space Mono";
-        font-weight: 400;
-        font-style: normal;
-      }
-      @font-face {
-        src: url("assets/SpaceMono-RegularItalic.ttf");
-        font-family: "Space Mono";
-        font-weight: 400;
-        font-style: italic;
-      }
-      @font-face {
-        src: url("assets/SpaceMono-Bold.ttf");
-        font-family: "Space Mono";
-        font-weight: 700;
-        font-style: normal;
-      }
-      @font-face {
-        src: url("assets/SpaceMono-BoldItalic.ttf");
-        font-family: "Space Mono";
-        font-weight: 700;
-        font-style: italic;
-      }
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://rayca.art/">
+  <meta property="twitter:title" content="RAYCA">
+  <meta property="twitter:description"
+    content="We are the world's largest and only marketplace for plain text NFTs that you can say you own.">
+  <meta property="twitter:image" content="https://rayca.art/banner.png">
 
-      @font-face {
-        src: url("assets/Montserrat-Black.ttf");
-        font-family: "Montserrat";
-        font-weight: 900;
-        font-style: normal;
-      }
-      @font-face {
-        src: url("assets/Montserrat-BlackItalic.ttf");
-        font-family: "Montserrat";
-        font-weight: 900;
-        font-style: italic;
-      }
+  <style>
+    @font-face {
+      font-weight: 400;
+      font-style: normal;
+      font-family: 'Space Mono';
+      src: url('assets/SpaceMono-Regular.ttf');
+    }
 
-      :root { font-size: max(1rem, 18px); }
+    @font-face {
+      font-weight: 400;
+      font-style: italic;
+      font-family: 'Space Mono';
+      src: url('assets/SpaceMono-RegularItalic.ttf');
+    }
 
-      html { scroll-behavior: smooth; }
-      body {
-        padding: 0 2rem;
+    @font-face {
+      font-weight: 700;
+      font-style: normal;
+      font-family: 'Space Mono';
+      src: url('assets/SpaceMono-Bold.ttf');
+    }
 
-        background-color: hsl(0, 0%, 99.6%);
-        color: hsl(0, 0%, 14.1%);
+    @font-face {
+      font-weight: 700;
+      font-style: italic;
+      font-family: 'Space Mono';
+      src: url('assets/SpaceMono-BoldItalic.ttf');
+    }
 
-        font-family: "Space Mono", "Courier New", "Courier", monospace;
-        line-height: 1.4;
-      }
-      body > * {
-        max-width: 45rem;
-        margin: 3rem auto;
-      }
+    @font-face {
+      font-weight: 900;
+      font-style: normal;
+      font-family: 'Montserrat';
+      src: url('assets/Montserrat-Black.ttf');
+    }
 
-      h1, h2 {
-        font-family: "Montserrat", "Arial", "Helvetica", sans-serif;
-        line-height: 1.2;
-        text-transform: uppercase;
-      }
+    @font-face {
+      font-weight: 900;
+      font-style: italic;
+      font-family: 'Montserrat';
+      src: url('assets/Montserrat-BlackItalic.ttf');
+    }
 
-      a { opacity: 0.85; }
-      a:hover, a:focus { opacity: 1; }
+    :root {
+      font-size: max(1rem, 18px);
+    }
 
-      main { max-width: 70rem; }
-      main > h2 {
-        max-width: 45rem;
-        margin-inline: auto;
-      }
+    html {
+      scroll-behavior: smooth;
+    }
 
-      footer {
-        position: sticky;
-        bottom: 2rem;
+    body {
+      padding: 0 2rem;
+      background-color: hsl(0, 0%, 99.6%);
+      color: hsl(0, 0%, 14.1%);
+      font-family: 'Space Mono', 'Courier New', 'Courier', monospace;
+      line-height: 1.4;
+    }
 
-        width: 2rem;
-        height: 2rem;
-        margin-inline: auto 0;
+    body>* {
+      margin: 3rem auto;
+      max-width: 45rem;
+    }
 
-        line-height: 2rem;
-        text-align: center;
+    h1,
+    h2 {
+      text-transform: uppercase;
+      font-family: 'Montserrat', 'Arial', 'Helvetica', sans-serif;
+      line-height: 1.2;
+    }
 
-        border-radius: 3px;
+    a {
+      opacity: 0.85;
+    }
 
-        background-color: hsla(0, 0%, 99.6%, 0.85);
-      }
-      footer > a {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
+    a:hover,
+    a:focus {
+      opacity: 1;
+    }
 
-      .list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-        gap: 2rem;
-        place-items: center;
-      }
+    main {
+      max-width: 70rem;
+    }
 
-      .card {
-        width: fit-content;
-        text-align: center;
-      }
-      .card > code { line-height: 0.801rem; }
-      .card > * { display: block; }
-    </style>
-  </head>
+    main>h2 {
+      max-width: 45rem;
 
-  <body>
-    <header>
-      <h1>Discover and collect computer-generated NFTs</h1>
+      margin-inline: auto;
+    }
+
+    footer {
+      position: sticky;
+      bottom: 2rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 3px;
+      background-color: hsla(0, 0%, 99.6%, 0.85);
+      text-align: center;
+      line-height: 2rem;
+
+      margin-inline: auto 0;
+    }
+
+    footer>a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .list {
+      display: grid;
+
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      place-items: center;
+    }
+
+    .card {
+      width: fit-content;
+      text-align: center;
+    }
+
+    .card>code {
+      line-height: 0.801rem;
+    }
+
+    .card>* {
+      display: block;
+    }
+
+    #modal-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+
+    #modal-wrapper.active {
+      display: flex;
+    }
+
+    #modal {
+      position: relative;
+      padding: 1rem;
+      width: fit-content;
+      border-radius: 3px;
+      background-color: hsl(0, 0%, 99.6%);
+      color: hsl(0, 0%, 14.1%);
+    }
+
+    #modal-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 3px;
+      color: hsl(0, 0%, 14.1%);
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      cursor: pointer;
+      transition: 150ms ease-in-out;
+      transition-property: background-color, color;
+    }
+
+    #modal-close:hover {
+      background-color: rgb(65, 125, 255);
+      color: white;
+    }
+
+    #modal-content {
+      font-size: 2rem;
+    }
+
+    #modal-content .card>code {
+      font-size: 2rem;
+      line-height: 1.3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Discover and collect computer-generated NFTs</h1>
+    <p>
+      We are the world's largest and <strong>only</strong> marketplace for
+      plain text NFTs that you can <i>say</i> you own.
+    </p>
+    <a href="#our-art">&darr; See our art &darr;</a>
+
+    <section id="what-is-rayca">
+      <h2><a href="#what-is-rayca">#</a> What is RAYCA?</h2>
       <p>
-        We are the world's largest and <strong>only</strong> marketplace for
-        plain text NFTs that you can <i>say</i> you own.
+        <b>
+          <def><abbr title="Random ASCII You Can Admire">RAYCA</abbr></def>
+        </b>
+        is <b>R</b>andom <b>A</b>SCII that <b>Y</b>ou <b>C</b>an <b>A</b>dmire;
+        a collection of procedurally generated plain text art for your viewing
+        pleasure.
       </p>
-      <a href="#our-art">&darr; See our art &darr;</a>
+      <p>
+        Every art piece you see here is automatically curated and <em>smooshed</em>
+        into a format resembling a random token that you can <strong>pseudo</strong>-own.
+      </p>
+      <p>
+        The <strong>metaverse</strong> was already here &mdash; and it was a
+        plain text fever dream &mdash; all we have to do is bring it back.
+      </p>
+    </section>
 
-      <section id="what-is-rayca">
-        <h2><a href="#what-is-rayca">#</a> What is RAYCA?</h2>
-        <p>
-          <b><def><abbr title="Random ASCII You Can Admire">RAYCA</abbr></def></b>
-          is <b>R</b>andom <b>A</b>SCII that <b>Y</b>ou <b>C</b>an <b>A</b>dmire;
-          a collection of procedurally generated plain text art for your viewing
-          pleasure.
-        </p>
-        <p>
-          Every art piece you see here is automatically curated and <em>smooshed</em>
-          into a format resembling a random token that you can <strong>pseudo</strong>-own.
-        </p>
-        <p>
-          The <strong>metaverse</strong> was already here &mdash; and it was a
-          plain text fever dream &mdash; all we have to do is bring it back.
-        </p>
-      </section>
+    <section id="who-is-rayca">
+      <h2><a href="#who-is-rayca">#</a> Who is RAYCA?</h2>
+      <p>
+        We are a <a href="https://thedevbird.com" title="Shane">couple</a> of
+        <a href="https://leonski.dev" title="Leon">friends</a> who think you
+        should have access to the freshest computer-made art.
+      </p>
+      <p>
+        That's why everything you see here is created on <strong>on-the-fly</strong>
+        for your viewing pleasure.
+      </p>
+    </section>
+  </header>
 
-      <section id="who-is-rayca">
-        <h2><a href="#who-is-rayca">#</a> Who is RAYCA?</h2>
-        <p>
-          We are a <a href="https://thedevbird.com" title="Shane">couple</a> of
-          <a href="https://leonski.dev" title="Leon">friends</a> who think you
-          should have access to the freshest computer-made art.
-        </p>
-        <p>
-          That's why everything you see here is created on <strong>on-the-fly</strong>
-          for your viewing pleasure.
-        </p>
-      </section>
-    </header>
-
+  <div id="modal-wrapper">
     <div id="modal">
       <div id="modal-close">&times;</div>
       <code id="modal-content">
       </code>
     </div>
+  </div>
 
-    <main id="our-art">
-      <h2><a href="#our-art">#</a> Our art</h2>
-    </main>
+  <main id="our-art">
+    <h2><a href="#our-art">#</a> Our art</h2>
+  </main>
 
-    <footer>
-      <a href="#" title="Back to top">&uarr;</a>
-    </footer>
+  <footer>
+    <a href="#" title="Back to top">&uarr;</a>
+  </footer>
 
-    <script defer>
-      function bitsNeeded(n, max) {
-        for(let i = 0; i < max; i++){
-          if (Math.pow(2, i) - 1 >= n) return i;
-        }
+  <script defer>
+    function bitsNeeded(n, max) {
+      for (let i = 0; i < max; i++) {
+        if (Math.pow(2, i) - 1 >= n) return i;
       }
+    }
 
-      function bitMask(n) {
-        return Array.from({ length: n }).reduce((a, _, i) => a | 1 << i, 0);
-      }
+    function bitMask(n) {
+      return Array.from({
+        length: n
+      }).reduce((a, _, i) => a | 1 << i, 0);
+    }
 
-      function gen(size, chars, rand) {
-        return Array.from({ length: size })
-          .map(() => Math.floor(rand() * chars));
-      }
+    function gen(size, chars, rand) {
+      return Array.from({
+          length: size
+        })
+        .map(() => Math.floor(rand() * chars));
+    }
 
-      function comp(data, chars) {
-        chars = chars - 1;
-        const bitsPerChar = bitsNeeded(chars, 8);
-        if (bitsPerChar === undefined) return;
+    function comp(data, chars) {
+      chars = chars - 1;
+      const bitsPerChar = bitsNeeded(chars, 8);
+      if (bitsPerChar === undefined) return;
 
-        const charsPerByte = Math.floor(8 / bitsPerChar);
-        const length = Math.ceil(data.length / charsPerByte);
+      const charsPerByte = Math.floor(8 / bitsPerChar);
+      const length = Math.ceil(data.length / charsPerByte);
 
-        return Array.from({ length }).map((_, i) =>
-          Array.from({ length: charsPerByte })
-            .map((_, j) => (data[j + i * charsPerByte] ?? 0) << bitsPerChar * j)
-            .reduce((p, c) => p | c),
-        );
-      }
+      return Array.from({
+        length
+      }).map((_, i) =>
+        Array.from({
+          length: charsPerByte
+        })
+        .map((_, j) => (data[j + i * charsPerByte] ?? 0) << bitsPerChar * j)
+        .reduce((p, c) => p | c),
+      );
+    }
 
-      function decomp(data, chars, size) {
-        chars = chars - 1;
-        const bitsPerChar = bitsNeeded(chars, 8);
-        if (bitsPerChar === undefined) return;
+    function decomp(data, chars, size) {
+      chars = chars - 1;
+      const bitsPerChar = bitsNeeded(chars, 8);
+      if (bitsPerChar === undefined) return;
 
-        const charsPerByte = Math.floor(8 / bitsPerChar);
-        const length = size ?? data.length * charsPerByte;
-        const charBitsMask = bitMask(bitsPerChar);
+      const charsPerByte = Math.floor(8 / bitsPerChar);
+      const length = size ?? data.length * charsPerByte;
+      const charBitsMask = bitMask(bitsPerChar);
 
-        return Array.from({ length })
-          .reverse()
-          .map((_, i) => {
-            const offset = bitsPerChar * (i % charsPerByte);
-            return (data[Math.floor(i / charsPerByte)] & charBitsMask << offset) >> offset;
-          });
-      }
+      return Array.from({
+          length
+        })
+        .reverse()
+        .map((_, i) => {
+          const offset = bitsPerChar * (i % charsPerByte);
+          return (data[Math.floor(i / charsPerByte)] & charBitsMask << offset) >> offset;
+        });
+    }
 
-      function ser(data, size, chars) {
-        return Array.from({ length: size }).map((_, i) => chars[data[i]]);
-      }
+    function ser(data, size, chars) {
+      return Array.from({
+        length: size
+      }).map((_, i) => chars[data[i]]);
+    }
 
-      function deser(data, size, chars) {
-        return Array.from({ length: size }).map((_, i) => chars.indexOf(data[i]));
-      }
+    function deser(data, size, chars) {
+      return Array.from({
+        length: size
+      }).map((_, i) => chars.indexOf(data[i]));
+    }
 
-      function tok(data) {
-        return Array.from({ length: data.length })
-          .reduce((a, _, i) => a + String.fromCharCode(data[i]), "");
-      }
+    function tok(data) {
+      return Array.from({
+          length: data.length
+        })
+        .reduce((a, _, i) => a + String.fromCharCode(data[i]), "");
+    }
 
-      function detok(data) {
-        return Array.from({ length: data.length })
-          .map((_, i) => data.charCodeAt(i));
-      }
+    function detok(data) {
+      return Array.from({
+          length: data.length
+        })
+        .map((_, i) => data.charCodeAt(i));
+    }
 
-      function text(data, width, border) {
-        return (border ? "┌" + "─".repeat(width) + "┐\n│" : "") +
-          data.reduce((p, c, i) => {
-            let res = "";
-            if (i % WIDTH === 0) res += border ? "│\n│" : "\n";
-            return p + res + c;
-          }) +
-          (border ? "│\n" + "└" + "─".repeat(width) + "┘" : "");
-      }
+    function text(data, width, border) {
+      return (border ? "┌" + "─".repeat(width) + "┐\n│" : "") +
+        data.reduce((p, c, i) => {
+          let res = "";
+          if (i % WIDTH === 0) res += border ? "│\n│" : "\n";
+          return p + res + c;
+        }) +
+        (border ? "│\n" + "└" + "─".repeat(width) + "┘" : "");
+    }
 
-      function mulberry32(a) {
-        return () => {
-          let t = a += 0x6d2b79f5;
-          t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-          return ((t ^ t >>> 14) >>> 0) / 4294967296;
-        };
-      }
+    function mulberry32(a) {
+      return () => {
+        let t = a += 0x6d2b79f5;
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
 
-      const SEED = 1337 ^ 0xdeadbeef;
-      const random = mulberry32(SEED);
+    const SEED = 1337 ^ 0xdeadbeef;
+    const random = mulberry32(SEED);
 
-      const WIDTH = 4;
-      const HEIGHT = 3;
-      const CHARS = [" ", "-", "="];
+    const WIDTH = 12;
+    const HEIGHT = 8;
+    const CHARS = [" ", "-", "="];
 
-      function html(data) {
-        const inner = document.createElement("code");
-        inner.innerHTML = text(ser(data, WIDTH * HEIGHT, CHARS), WIDTH, true)
-          .replace(/ /g, "&nbsp;")
-          .replace(/\n/g, "<br>")
-        return inner;
-      }
+    function html(data) {
+      const inner = document.createElement("code");
+      inner.innerHTML = text(ser(data, WIDTH * HEIGHT, CHARS), WIDTH, true)
+        .replace(/ /g, "&nbsp;")
+        .replace(/\n/g, "<br>")
+      return inner;
+    }
 
-      const artList = document.createElement("div");
-      artList.classList.add("list");
-      document.getElementById("our-art").appendChild(artList);
+    const artList = document.createElement("div");
+    artList.classList.add("list");
+    document.getElementById("our-art").appendChild(artList);
 
-      function card(data) {
-        const card = document.createElement("div");
-        card.setAttribute("aria-label", "art");
-        card.classList.add("card");
+    function card(data) {
+      const card = document.createElement("div");
+      card.setAttribute("aria-label", "art");
+      card.classList.add("card");
 
-        const ascii = html(data);
+      const ascii = html(data);
 
-        const number = document.createElement("span");
-        number.innerHTML = `#${data.map(
+      const number = document.createElement("span");
+      number.innerHTML = `#${data.map(
           (el, i) => String(el + i).slice(-1)
         ).slice(0, 8).join('')}`;
 
-        const cta = document.createElement("a");
-        cta.href = "?token=" + btoa(tok(comp(data, CHARS.length)));
-        cta.innerText = "Own a copy";
-        cta.addEventListener("click", (e) => {
-          e.preventDefault();
-          navigator.clipboard.writeText(cta.href);
+      const cta = document.createElement("a");
+      cta.href = "?token=" + btoa(tok(comp(data, CHARS.length)));
+      cta.innerText = "Own a copy";
+      cta.addEventListener("click", (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(cta.href);
 
-          const originalInnerText = cta.innerText;
-          cta.innerText = "Copied!";
-          setTimeout(() => cta.innerText = originalInnerText, 2000);
-        });
+        const originalInnerText = cta.innerText;
+        cta.innerText = "Copied!";
+        setTimeout(() => cta.innerText = originalInnerText, 2000);
+      });
 
-        card.appendChild(ascii);
-        card.appendChild(number);
-        card.appendChild(cta);
+      card.appendChild(ascii);
+      card.appendChild(number);
+      card.appendChild(cta);
 
-        return card;
+      return card;
+    }
+
+    const INF_SCROLL_OFF = 400;
+    const CARDS_TO_INSERT = 16;
+
+    const queryToken = new URLSearchParams(location.search).get("token");
+
+    if (queryToken) {
+      const modal = document.getElementById("modal-content");
+      const modalWrapper = document.getElementById("modal-wrapper");
+      const cardFromUrl = card(decomp(detok(atob(queryToken)), CHARS.length, WIDTH * HEIGHT));
+      modal.appendChild(cardFromUrl);
+      modalWrapper.classList.add("active");
+    }
+
+    function nextCards() {
+      for (let i = 0; i < CARDS_TO_INSERT; i++) {
+        artList.appendChild(card(gen(WIDTH * HEIGHT, CHARS.length, random)));
       }
+    }
+    nextCards();
 
-      const INF_SCROLL_OFF = 400;
-      const CARDS_TO_INSERT = 16;
-
-      const queryToken = new URLSearchParams(location.search).get("token");
-
-      if (queryToken) {
-        const heading = document.getElementById("heading");
-        const headingLink = document.getElementById("heading-link");
-        const cardFromUrl = card(decomp(deser(queryToken)));
-        artList.appendChild(cardFromUrl);
+    document.addEventListener("scroll", () => {
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+      } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - INF_SCROLL_OFF) {
+        nextCards();
       }
+    }, {
+      passive: true
+    });
 
-      function nextCards() {
-        for (let i = 0; i < CARDS_TO_INSERT; i++) {
-          artList.appendChild(card(gen(WIDTH * HEIGHT, CHARS.length, random)));
-        }
+    document.getElementById('modal-close').addEventListener('click', () => {
+      document.getElementById('modal-wrapper').classList.remove('active');
+    });
+
+    document.getElementById('modal-wrapper').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('modal-wrapper').classList.remove('active');
       }
-      nextCards();
+    });
+  </script>
+</body>
 
-      document.addEventListener("scroll", () => {
-        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-        if (scrollTop + clientHeight >= scrollHeight - INF_SCROLL_OFF) {
-          nextCards();
-        }
-      }, { passive: true });
-    </script>
-  </body>
 </html>

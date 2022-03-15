@@ -1,0 +1,50 @@
+@use './typography';
+
+$background-color-primary: hsl(0, 0%, 99.6%);
+$background-color-success: hsl(120, 60%, 89.6%);
+$background-color-error: hsl(0, 60%, 89.6%);
+
+$border-color: hsl(0, 0%, 79.6%);
+$border-color-success: hsl(120, 60%, 79.6%);
+$border-color-error: hsl(0, 60%, 79.6%);
+
+$text-color: hsl(0, 0%, 14.1%);
+$link-color: hsl(271.3, 68.5%, 32.4%);
+
+$card-width: 12.5rem;
+
+:root {
+  font-size: max(1rem, 18px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin-block: 3rem;
+  padding: 0 2rem;
+
+  background-color: $background-color-primary;
+  color: $text-color;
+
+  font-family: typography.$body-font;
+  line-height: typography.$body-line-height;
+}
+
+h1,
+h2 {
+  font-family: typography.$head-font;
+  line-height: typography.$head-line-height;
+  text-transform: uppercase;
+}
+
+a {
+  color: $link-color;
+  opacity: 0.75;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}

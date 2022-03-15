@@ -6,6 +6,9 @@
 
     <title>RAYCA, the only Random ASCII You Can Admire</title>
 
+    <link rel="stylesheet" href="sass/_index.scss" />
+    <script type="module" defer src="ts/index.ts"></script>
+
     <!-- Primary Meta Tags -->
     <title>RAYCA</title>
     <meta name="title" content="RAYCA" />
@@ -33,71 +36,64 @@
       content="We are the world's largest and only marketplace for plain text NFTs that you can say you own."
     />
     <meta property="twitter:image" content="https://rayca.art/banner.png" />
-
-    <link rel="stylesheet" href="style.scss" />
   </head>
 
   <body>
-    <header>
+    <header class="thin">
       <h1>Discover and collect computer-generated NFTs</h1>
       <p>
         We are the world's largest and <strong>only</strong> marketplace for
-        plain text NFTs that you can <i>say</i> you own.
+        <b>plain text</b> NFTs that you can <i>say</i> you own.
       </p>
       <a href="#our-art">&darr; See our art &darr;</a>
+    </header>
 
-      <section id="what-is-rayca">
+    <main>
+      <section id="what-is-rayca" class="thin">
         <h2><a href="#what-is-rayca">#</a> What is RAYCA?</h2>
         <p>
           <b>
             <def><abbr title="Random ASCII You Can Admire">RAYCA</abbr></def>
           </b>
-          is <b>R</b>andom <b>A</b>SCII that <b>Y</b>ou <b>C</b>an
-          <b>A</b>dmire; a collection of procedurally generated plain text art
-          for your viewing pleasure.
+          provides only the best <em>automatically curated</em> collection of
+          <em>procedurally generated</em>, digital plain text art for your eyes
+          to enjoy. Every piece goes through an
+          <em>extensively tested algorithm</em> purpose-made to create
+          <strong>practically identical</strong> art.
         </p>
         <p>
-          Every art piece you see here is automatically curated and
-          <em>smooshed</em> into a format resembling a random token that you can
-          <strong>pseudo</strong>-own.
+          We supply <b>pseudo-random tokens</b> produced from these art pieces
+          that you can <strong>own</strong> a <em>copy</em> of and view on this
+          site <strong>exclusively</strong> &mdash; be sure to collect yours
+          while they're still available.
         </p>
         <p>
-          The <strong>metaverse</strong> was already here &mdash; and it was a
-          plain text fever dream &mdash; all we have to do is bring it back.
+          The road ahead seems prosperous, with the <i>fever dream</i> of a
+          plain text <strong>metaverse</strong> on the horizon, founded on a
+          <strong>pyramid of profits</strong> the likes of which we have
+          <i>never</i> seen before.
         </p>
       </section>
 
-      <section id="who-is-rayca">
+      <section id="who-is-rayca" class="thin">
         <h2><a href="#who-is-rayca">#</a> Who is RAYCA?</h2>
         <p>
           We are a <a href="https://thedevbird.com" title="Shane">couple</a> of
-          <a href="https://leonski.dev" title="Leon">friends</a> who think you
-          should have access to the freshest computer-made art.
+          <a href="https://leonski.dev" title="Leon">friends</a> who enjoy the
+          <i title="It's not as simple as you think">simplicity</i> of
+          <b>plain text</b> and want to share that with you.
         </p>
-        <p>
-          That's why everything you see here is created <strong>on the fly</strong>.
-        </p>
+        <p>TODO: satire &mdash; we need satire!</p>
       </section>
-    </header>
 
-    <div id="modal-wrapper">
-      <div id="modal">
-        <a id="modal-close" href="javascript:void(0)">&times;</a>
-        <div id="modal-content"></div>
-      </div>
-    </div>
-
-    <main id="our-art">
-      <h2><a href="#our-art">#</a> Our art</h2>
-      <p>
-        <i>Sorted by popularity</i>
-      </p>
+      <section id="our-art" class="wide">
+        <h2 class="thin"><a href="#our-art">#</a> Our art</h2>
+        <p class="thin"><em>Sorted by randomness</em></p>
+        <div id="card-list" class="card-list"></div>
+      </section>
     </main>
 
-    <footer>
-      <a href="#" title="Back to top">&uarr;</a>
-    </footer>
-
-    <script src="script.ts" type="module" defer></script>
+    <div id="toast-list" class="toast-list"></div>
+    <a class="back-to-top" href="#" title="Back to top">&uarr;</a>
   </body>
 </html>

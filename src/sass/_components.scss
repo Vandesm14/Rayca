@@ -1,0 +1,103 @@
+@use './base';
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, base.$card-width);
+
+  place-content: center;
+  gap: 1rem;
+
+  > * {
+    margin: 1rem;
+  }
+}
+
+.card {
+  padding: 1rem;
+
+  text-align: center;
+
+  border: solid 2px base.$border-color;
+  border-radius: 0.175rem;
+
+  transition: ease-out 100ms;
+
+  &:hover,
+  &:focus-within {
+    box-shadow: 0 0.5rem 1rem 0 base.$border-color;
+    transform: scale3d(1.006, 1.006, 1);
+  }
+
+  > p {
+    margin-top: 0;
+  }
+
+  > code {
+    width: fit-content;
+    margin: 1rem auto;
+    padding: 0.25rem;
+
+    line-height: 0.6rem;
+
+    border: solid 2px base.$text-color;
+    display: block;
+  }
+
+  > a + a {
+    margin-left: 1rem;
+  }
+}
+
+.toast-list {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+
+  width: 15rem;
+
+  > * {
+    margin: 0;
+    padding: 0.5rem 1rem;
+
+    text-align: center;
+
+    border-radius: 0.175rem;
+
+    transition: opacity ease-out 100ms;
+    opacity: 0;
+  }
+
+  > * + * {
+    margin-top: 1rem;
+  }
+
+  > *.success {
+    background-color: base.$background-color-success;
+    border: solid 2px base.$border-color-success;
+  }
+  > *.error {
+    background-color: base.$background-color-error;
+    border: solid 2px base.$border-color-error;
+  }
+
+  > *.fade-in {
+    opacity: 1;
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  width: 2rem;
+  height: 2rem;
+
+  background-color: base.$background-color-primary;
+  border-radius: 0.175rem;
+
+  line-height: 2rem;
+  text-align: center;
+
+  display: block;
+}

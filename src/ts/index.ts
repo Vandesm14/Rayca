@@ -76,3 +76,6 @@ document.addEventListener(
   },
   { passive: true }
 );
+document
+  .getElementById('card-list')
+  .append(...cardBatch(INFINITE_SCROLL_BATCH));

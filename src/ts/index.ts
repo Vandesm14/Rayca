@@ -19,18 +19,18 @@ function card(seq: number[]): HTMLElement {
       .slice(0, 8)
       .map((c, i) => String(c + i).slice(-1))
       .join('');
-  card.appendChild(id);
+  card.append(id);
 
   const art = document.createElement('code');
   art.innerHTML = RAYCA.toString(seq)
     .replace(/\n/g, '<br>')
     .replace(/ /g, '&nbsp;');
-  card.appendChild(art);
+  card.append(art);
 
   const copy = document.createElement('a');
   copy.innerText = 'Own a copy';
   copy.href = '?token=' + RAYCA.toToken(RAYCA.compress(seq));
-  card.appendChild(copy);
+  card.append(copy);
 
   const copyClipboard = (e: Event) => {
     e.preventDefault();
@@ -52,6 +52,17 @@ function card(seq: number[]): HTMLElement {
 function cardBatch(batch: number): HTMLElement[] {
   return Array.from({ length: batch }).map(() => card(RAYCA.generate()));
 }
+
+/** Loads more cards. */
+function loadMoreCardBatch(batch: number) {
+  document
+    .getElementById('card-list')
+    .append(...cardBatch(batch));
+}
+
+const loadMore = document.getElementById("load-more");
+loadMore.addEventListener("click", () => loadMoreCardBatch(INFINITE_SCROLL_BATCH));
+loadMore.addEventListener("submit", () => loadMoreCardBatch(INFINITE_SCROLL_BATCH));
 
 // /** Views a token if one was provided. */
 // function viewToken(): boolean {

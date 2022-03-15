@@ -1,5 +1,5 @@
 /** Shows a toast. */
-export function toast(s: string, kind: "success" | "error", duration: number) {
+export function toast(s: string, kind: 'success' | 'error', duration: number) {
   const toast = document.createElement('p');
   toast.classList.add(kind);
   toast.innerText = s;

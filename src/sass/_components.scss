@@ -17,14 +17,14 @@
 
   text-align: center;
 
-  border: solid 2px base.$background-color-secondary;
+  border: solid 2px base.$border-color;
   border-radius: 0.175rem;
 
   transition: ease-out 100ms;
 
   &:hover,
   &:focus-within {
-    box-shadow: 0 0.5rem 1rem 0 base.$background-color-secondary;
+    box-shadow: 0 0.5rem 1rem 0 base.$border-color;
     transform: scale3d(1.006, 1.006, 1);
   }
 
@@ -59,11 +59,8 @@
     margin: 0;
     padding: 0.5rem 1rem;
 
-    background-color: base.$background-color-primary;
-
     text-align: center;
 
-    border: solid 2px base.$background-color-secondary;
     border-radius: 0.175rem;
 
     transition: opacity ease-out 100ms;
@@ -74,11 +71,17 @@
     margin-top: 1rem;
   }
 
-  > *.in {
-    opacity: 1;
+  > *.success {
+    background-color: base.$background-color-success;
+    border: solid 2px base.$border-color-success;
   }
-  > *.out {
-    opacity: 0;
+  > *.error {
+    background-color: base.$background-color-error;
+    border: solid 2px base.$border-color-error;
+  }
+
+  > *.fade-in {
+    opacity: 1;
   }
 }
 

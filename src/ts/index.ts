@@ -36,9 +36,9 @@ function card(seq: number[]): HTMLElement {
     e.preventDefault();
     if (navigator.clipboard) {
       navigator.clipboard.writeText(copy.href);
-      toast('Copied to clipboard!', TOAST_DURATION);
+      toast('Copied to clipboard!', "success", TOAST_DURATION);
     } else {
-      toast('Unable to copy.', TOAST_DURATION);
+      toast('Unable to copy.', "error", TOAST_DURATION);
     }
   };
   copy.addEventListener('click', copyClipboard);
@@ -56,7 +56,7 @@ function cardBatch(batch: number): HTMLElement[] {
 // function viewToken(): boolean {
 //   const token = (new URLSearchParams(location.search)).get("token");
 //   if (token === null) return false;
-
+//   // ...
 //   return true;
 // }
 

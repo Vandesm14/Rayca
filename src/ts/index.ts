@@ -35,8 +35,9 @@ function card(seq: number[]): HTMLElement {
   const copyClipboard = (e: Event) => {
     e.preventDefault();
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(copy.href);
-      toast('Copied to clipboard!', 'success', TOAST_DURATION);
+      navigator.clipboard.writeText(copy.href)
+        .then(() => toast('Copied to clipboard!', 'success', TOAST_DURATION))
+        .catch(() => toast('Unable to copy.', 'error', TOAST_DURATION));
     } else {
       toast('Unable to copy.', 'error', TOAST_DURATION);
     }

@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Space Mono';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../assets/SpaceMono-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-weight: 400;
+  font-style: italic;
+  src: url('../assets/SpaceMono-RegularItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-weight: 700;
+  font-style: normal;
+  src: url('../assets/SpaceMono-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-weight: 700;
+  font-style: italic;
+  src: url('../assets/SpaceMono-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  font-style: normal;
+  src: url('../assets/Montserrat-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  font-style: italic;
+  src: url('../assets/Montserrat-BlackItalic.ttf') format('truetype');
+}
+
+$head-font: 'Montserrat', 'Arial', 'Helvetica', sans-serif;
+$body-font: 'Space Mono', 'Courier New', 'Courier', monospace;
+$head-line-height: 1.2;
+$body-line-height: 1.4;

@@ -3,6 +3,7 @@ import { toast } from './toast';
 import { random, SEED } from './utils';
 
 const RAYCA = new Rayca(10, 10, [' ', '-', '='], random(SEED));
+
 const TOAST_DURATION = 2000;
 const INFINITE_SCROLL_OFFSET = 400;
 const INFINITE_SCROLL_BATCH = 16;

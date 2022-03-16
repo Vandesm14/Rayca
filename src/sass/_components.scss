@@ -165,4 +165,24 @@
     transform: translate(1.5rem, 0);
     background-color: base.$color-success;
   }
+
+  > input::after {
+    position: absolute;
+    display: block;
+
+    margin-top: 0.05rem;
+    margin-inline: 0.05rem;
+
+    transition: transform ease-out 150ms;
+    transform: translate(0.1rem, -0.95rem);
+
+    color: base.$background-color-error;
+    content: '\00d7';
+  }
+
+  > input:checked::after {
+    transform: translate(1.55rem, -0.95rem);
+    color: base.$background-color-success;
+    content: '\2713';
+  }
 }

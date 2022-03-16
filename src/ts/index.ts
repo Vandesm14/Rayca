@@ -7,6 +7,12 @@ const TOAST_DURATION = 2000;
 const INFINITE_SCROLL_OFFSET = 400;
 const INFINITE_SCROLL_BATCH = 16;
 
+const cardList = document.getElementById('card-list') as HTMLDivElement;
+const loadMore = document.getElementById('load-more') as HTMLAnchorElement;
+const infScrollToggle = document.getElementById(
+  'inf-scroll-toggle'
+) as HTMLInputElement;
+
 /** Creates a new card from a rayca sequence. */
 function card(seq: number[]): HTMLElement {
   const card = document.createElement('div');
@@ -52,10 +58,9 @@ function cardBatch(batch: number): HTMLElement[] {
 
 /** Loads more cards. */
 function loadMoreCardBatch(batch: number) {
-  document.getElementById('card-list').append(...cardBatch(batch));
+  cardList.append(...cardBatch(batch));
 }
 
-const loadMore = document.getElementById('load-more');
 loadMore.addEventListener('click', () =>
   loadMoreCardBatch(INFINITE_SCROLL_BATCH)
 );
@@ -76,47 +81,24 @@ loadMore.addEventListener('submit', () =>
 function infiniteScroll() {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
   if (scrollTop + clientHeight >= scrollHeight - INFINITE_SCROLL_OFFSET) {
-    document
-      .getElementById('card-list')
-      .append(...cardBatch(INFINITE_SCROLL_BATCH));
+    loadMoreCardBatch(INFINITE_SCROLL_BATCH);
   }
 }
 
-// // infinite scroll
-// let infiniteScrollEnabled = false;
-// document.getElementById("inf-scroll-toggle").addEventListener("change", (e) => {
-//   if ((e.target as HTMLInputElement).checked && !infiniteScrollEnabled) {
-//     infiniteScrollEnabled = true;
-//     document.addEventListener("scroll", () => infiniteScroll(INFINITE_SCROLL_BATCH), { passive: true });
-//   } else if (infiniteScrollEnabled) {
-//     infiniteScrollEnabled = false;
-//     document.removeEventListener("scroll", () => infiniteScroll(INFINITE_SCROLL_BATCH));
-//   }
-// });
-// if ((document.getElementById("inf-scroll-toggle") as HTMLInputElement).checked) {
-//   infiniteScrollEnabled = true;
-//   document.addEventListener("scroll", () => infiniteScroll(INFINITE_SCROLL_BATCH), { passive: true });
-// }
-
 // infinite scroll
 let infiniteScrollEnabled = false;
-document.getElementById('inf-scroll-toggle').addEventListener('change', (e) => {
-  const checked = (e.target as HTMLInputElement).checked;
-  if (!infiniteScrollEnabled && checked) {
+infScrollToggle.addEventListener('change', (e) => {
+  if (!infiniteScrollEnabled && infScrollToggle.checked) {
     infiniteScrollEnabled = true;
     document.addEventListener('scroll', infiniteScroll, { passive: true });
-  } else if (infiniteScrollEnabled && !checked) {
+  } else if (infiniteScrollEnabled && !infScrollToggle.checked) {
     infiniteScrollEnabled = false;
     document.removeEventListener('scroll', infiniteScroll);
   }
 });
-if (
-  (document.getElementById('inf-scroll-toggle') as HTMLInputElement).checked
-) {
+if (infScrollToggle.checked) {
   infiniteScrollEnabled = true;
   document.addEventListener('scroll', infiniteScroll, { passive: true });
 }
 
-document
-  .getElementById('card-list')
-  .append(...cardBatch(INFINITE_SCROLL_BATCH));
+cardList.append(...cardBatch(INFINITE_SCROLL_BATCH));

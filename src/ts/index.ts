@@ -14,11 +14,7 @@ function card(seq: number[]): HTMLElement {
 
   const id = document.createElement('p');
   id.innerText =
-    '#' +
-    seq
-      .slice(0, 8)
-      .map((c, i) => String(c + i).slice(-1))
-      .join('');
+    '#' + seq.slice(0, 8).reduce((p, c, i) => p + String(c + i), '');
   card.append(id);
 
   const art = document.createElement('code');

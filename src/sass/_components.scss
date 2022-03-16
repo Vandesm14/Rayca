@@ -126,14 +126,14 @@
   > input {
     appearance: none;
 
-    width: 2.5rem;
-    height: 1rem;
+    width: 3rem;
+    height: fit-content;
     margin: 0;
 
     background-color: base.$background-color-error;
 
     border: solid 2px base.$border-color-error;
-    border-radius: 1rem;
+    border-radius: 2rem;
 
     transition: ease-out 150ms;
 
@@ -148,41 +148,31 @@
   > input::before {
     display: block;
 
-    width: 0.65rem;
-    height: 0.65rem;
-    margin-top: 0.05rem;
-    margin-inline: 0.05rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    margin: 0.1rem;
 
     background-color: base.$color-error;
-    border-radius: 0.75rem;
+    color: base.$background-color-error;
 
-    transition: transform ease-out 150ms;
+    border-radius: 100%;
 
-    content: '';
+    transition: ease-out 150ms;
+
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 0.65rem;
+    text-align: center;
+
+    content: '\2013';
   }
 
   > input:checked::before {
-    transform: translate(1.5rem, 0);
+    margin-left: auto;
+
     background-color: base.$color-success;
-  }
-
-  > input::after {
-    position: absolute;
-    display: block;
-
-    margin-top: 0.05rem;
-    margin-inline: 0.05rem;
-
-    transition: transform ease-out 150ms;
-    transform: translate(0.1rem, -0.95rem);
-
-    color: base.$background-color-error;
-    content: '\00d7';
-  }
-
-  > input:checked::after {
-    transform: translate(1.55rem, -0.95rem);
     color: base.$background-color-success;
-    content: '\2713';
+
+    content: '\2219';
   }
 }

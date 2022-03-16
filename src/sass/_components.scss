@@ -140,9 +140,21 @@
     cursor: pointer;
   }
 
+  > input:hover,
+  > input:focus {
+    background-color: base.$border-color-error;
+    border: solid 2px base.$color-error;
+  }
+
   > input:checked {
     background-color: base.$background-color-success;
     border: solid 2px base.$border-color-success;
+  }
+
+  > input:checked:hover,
+  > input:checked:focus {
+    background-color: base.$border-color-success;
+    border: solid 2px base.$color-success;
   }
 
   > input::before {
@@ -159,12 +171,13 @@
 
     transition: ease-out 150ms;
 
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 0.65rem;
-    text-align: center;
+    // font-size: 1rem;
+    // font-weight: 700;
+    // line-height: 0.65rem;
+    // text-align: center;
 
-    content: '\2013';
+    // content: '\2013';
+    content: '';
   }
 
   > input:checked::before {
@@ -173,6 +186,7 @@
     background-color: base.$color-success;
     color: base.$background-color-success;
 
-    content: '\2219';
+    // content: '\2219';
+    content: '';
   }
 }

@@ -1,0 +1,205 @@
+@font-face {
+  font-family: "Space Mono";
+  font-weight: 400;
+  font-style: normal;
+  src: url("SpaceMono-Regular.4a57c823.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Space Mono";
+  font-weight: 400;
+  font-style: italic;
+  src: url("SpaceMono-RegularItalic.16d5075e.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Space Mono";
+  font-weight: 700;
+  font-style: normal;
+  src: url("SpaceMono-Bold.31942dd9.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Space Mono";
+  font-weight: 700;
+  font-style: italic;
+  src: url("SpaceMono-BoldItalic.665b24f7.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: normal;
+  src: url("Montserrat-Black.828bfb09.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: italic;
+  src: url("Montserrat-BlackItalic.5a826820.ttf") format("truetype");
+}
+:root {
+  font-size: max(1rem, 18px);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin-block: 3rem;
+  padding: 0 2rem;
+  background-color: #fefefe;
+  color: #242424;
+  font-family: "Space Mono", "Courier New", "Courier", monospace;
+  line-height: 1.4;
+}
+h1,
+h2 {
+  font-family: "Montserrat", "Arial", "Helvetica", sans-serif;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+a {
+  color: #551a8b;
+  opacity: 0.75;
+}
+a:hover, a:focus {
+  opacity: 1;
+}
+.thin {
+  max-width: 45rem;
+  margin-inline: auto;
+}
+.wide {
+  max-width: 70rem;
+  margin-inline: auto;
+}
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 12.5rem);
+  place-content: center;
+  gap: 1rem;
+}
+.card-list > * {
+  margin: 1rem;
+}
+.card {
+  padding: 1rem;
+  text-align: center;
+  border: solid 2px #cbcbcb;
+  border-radius: 0.175rem;
+  transition: ease-out 100ms;
+}
+.card:hover, .card:focus-within {
+  box-shadow: 0 0.5rem 1rem 0 #cbcbcb;
+  transform: scale3d(1.006, 1.006, 1);
+}
+.card > p {
+  margin-top: 0;
+}
+.card > code {
+  width: fit-content;
+  margin: 1rem auto;
+  padding: 0.25rem;
+  line-height: 0.6rem;
+  border: solid 2px #242424;
+  display: block;
+}
+.card > a + a {
+  margin-left: 1rem;
+}
+.toast-list {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 15rem;
+}
+.toast-list > * {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 0.175rem;
+  transition: opacity ease-out 100ms;
+  opacity: 0;
+}
+.toast-list > * + * {
+  margin-top: 1rem;
+}
+.toast-list > *.success {
+  background-color: #d5f4d5;
+  border: solid 2px #aceaac;
+}
+.toast-list > *.error {
+  background-color: #f4d5d5;
+  border: solid 2px #eaacac;
+}
+.toast-list > *.fade-in {
+  opacity: 1;
+}
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: #fefefe;
+  border-radius: 0.175rem;
+  line-height: 2rem;
+  text-align: center;
+  display: block;
+}
+.load-more {
+  width: fit-content;
+  margin-inline: auto;
+  text-align: center;
+  display: block;
+}
+.toggle {
+  display: inline-flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.toggle > span {
+  opacity: 0.85;
+  font-style: italic;
+}
+.toggle > input {
+  appearance: none;
+  width: 3rem;
+  height: fit-content;
+  margin: 0;
+  background-color: #f4d5d5;
+  border: solid 2px #eaacac;
+  border-radius: 2rem;
+  transition: ease-out 150ms;
+  cursor: pointer;
+}
+.toggle > input:hover,
+.toggle > input:focus {
+  background-color: #eaacac;
+  border: solid 2px #d65a5a;
+}
+.toggle > input:checked {
+  background-color: #d5f4d5;
+  border: solid 2px #aceaac;
+}
+.toggle > input:checked:hover,
+.toggle > input:checked:focus {
+  background-color: #aceaac;
+  border: solid 2px #5ad65a;
+}
+.toggle > input::before {
+  display: block;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: 0.1rem;
+  background-color: #d65a5a;
+  color: #f4d5d5;
+  border-radius: 100%;
+  transition: ease-out 150ms;
+  content: "";
+}
+.toggle > input:checked::before {
+  margin-left: auto;
+  background-color: #5ad65a;
+  color: #d5f4d5;
+  content: "";
+}
+/*# sourceMappingURL=index.4db08be1.css.map */

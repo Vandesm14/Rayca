@@ -35,7 +35,8 @@ function card(seq: number[]): HTMLElement {
   const copyClipboard = (e: Event) => {
     e.preventDefault();
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(copy.href)
+      navigator.clipboard
+        .writeText(copy.href)
         .then(() => toast('Copied to clipboard!', 'success', TOAST_DURATION))
         .catch(() => toast('Unable to copy.', 'error', TOAST_DURATION));
     } else {
@@ -55,14 +56,16 @@ function cardBatch(batch: number): HTMLElement[] {
 
 /** Loads more cards. */
 function loadMoreCardBatch(batch: number) {
-  document
-    .getElementById('card-list')
-    .append(...cardBatch(batch));
+  document.getElementById('card-list').append(...cardBatch(batch));
 }
 
-const loadMore = document.getElementById("load-more");
-loadMore.addEventListener("click", () => loadMoreCardBatch(INFINITE_SCROLL_BATCH));
-loadMore.addEventListener("submit", () => loadMoreCardBatch(INFINITE_SCROLL_BATCH));
+const loadMore = document.getElementById('load-more');
+loadMore.addEventListener('click', () =>
+  loadMoreCardBatch(INFINITE_SCROLL_BATCH)
+);
+loadMore.addEventListener('submit', () =>
+  loadMoreCardBatch(INFINITE_SCROLL_BATCH)
+);
 
 // /** Views a token if one was provided. */
 // function viewToken(): boolean {
@@ -74,19 +77,50 @@ loadMore.addEventListener("submit", () => loadMoreCardBatch(INFINITE_SCROLL_BATC
 
 // if (!viewToken()) { /* infinite scroll here */ }
 
+function infiniteScroll() {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (scrollTop + clientHeight >= scrollHeight - INFINITE_SCROLL_OFFSET) {
+    document
+      .getElementById('card-list')
+      .append(...cardBatch(INFINITE_SCROLL_BATCH));
+  }
+}
+
+// // infinite scroll
+// let infiniteScrollEnabled = false;
+// document.getElementById("inf-scroll-toggle").addEventListener("change", (e) => {
+//   if ((e.target as HTMLInputElement).checked && !infiniteScrollEnabled) {
+//     infiniteScrollEnabled = true;
+//     document.addEventListener("scroll", () => infiniteScroll(INFINITE_SCROLL_BATCH), { passive: true });
+//   } else if (infiniteScrollEnabled) {
+//     infiniteScrollEnabled = false;
+//     document.removeEventListener("scroll", () => infiniteScroll(INFINITE_SCROLL_BATCH));
+//   }
+// });
+// if ((document.getElementById("inf-scroll-toggle") as HTMLInputElement).checked) {
+//   infiniteScrollEnabled = true;
+//   document.addEventListener("scroll", () => infiniteScroll(INFINITE_SCROLL_BATCH), { passive: true });
+// }
+
 // infinite scroll
-document.addEventListener(
-  'scroll',
-  () => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - INFINITE_SCROLL_OFFSET) {
-      document
-        .getElementById('card-list')
-        .append(...cardBatch(INFINITE_SCROLL_BATCH));
-    }
-  },
-  { passive: true }
-);
+let infiniteScrollEnabled = false;
+document.getElementById('inf-scroll-toggle').addEventListener('change', (e) => {
+  const checked = (e.target as HTMLInputElement).checked;
+  if (!infiniteScrollEnabled && checked) {
+    infiniteScrollEnabled = true;
+    document.addEventListener('scroll', infiniteScroll, { passive: true });
+  } else if (infiniteScrollEnabled && !checked) {
+    infiniteScrollEnabled = false;
+    document.removeEventListener('scroll', infiniteScroll);
+  }
+});
+if (
+  (document.getElementById('inf-scroll-toggle') as HTMLInputElement).checked
+) {
+  infiniteScrollEnabled = true;
+  document.addEventListener('scroll', infiniteScroll, { passive: true });
+}
+
 document
   .getElementById('card-list')
   .append(...cardBatch(INFINITE_SCROLL_BATCH));

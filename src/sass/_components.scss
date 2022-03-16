@@ -18,7 +18,7 @@
   text-align: center;
 
   border: solid 2px base.$border-color;
-  border-radius: 0.175rem;
+  border-radius: base.$border-radius;
 
   transition: ease-out 100ms;
 
@@ -61,7 +61,7 @@
 
     text-align: center;
 
-    border-radius: 0.175rem;
+    border-radius: base.$border-radius;
 
     transition: opacity ease-out 100ms;
     opacity: 0;
@@ -94,7 +94,7 @@
   height: 2rem;
 
   background-color: base.$background-color-primary;
-  border-radius: 0.175rem;
+  border-radius: base.$border-radius;
 
   line-height: 2rem;
   text-align: center;
@@ -108,4 +108,61 @@
 
   text-align: center;
   display: block;
+}
+
+.toggle {
+  display: inline-flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+
+  > span {
+    opacity: 0.85;
+    font-style: italic;
+  }
+
+  > input {
+    appearance: none;
+
+    width: 2.5rem;
+    height: 1rem;
+    margin: 0;
+
+    background-color: base.$background-color-error;
+
+    border: solid 2px base.$border-color-error;
+    border-radius: 1rem;
+
+    transition: ease-out 150ms;
+
+    cursor: pointer;
+  }
+
+  > input:checked {
+    background-color: base.$background-color-success;
+    border: solid 2px base.$border-color-success;
+  }
+
+  > input::before {
+    display: block;
+
+    width: 0.65rem;
+    height: 0.65rem;
+    margin-top: 0.05rem;
+    margin-inline: 0.05rem;
+
+    background-color: base.$color-error;
+    border-radius: 0.75rem;
+
+    transition: transform ease-out 150ms;
+
+    content: '';
+  }
+
+  > input:checked::before {
+    transform: translate(1.5rem, 0);
+    background-color: base.$color-success;
+  }
 }

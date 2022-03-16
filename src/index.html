@@ -87,10 +87,20 @@
       </section>
 
       <section id="our-art" class="wide">
-        <h2 class="thin"><a href="#our-art">#</a> Our art</h2>
-        <p class="thin"><em>Sorted by randomness</em></p>
+        <div class="thin">
+          <h2><a href="#our-art">#</a> Our art</h2>
+          <p><em>Sorted by randomness</em></p>
+          <label class="toggle">
+            <input id="inf-scroll-toggle" type="checkbox" />
+            <span>Infinite Scroll</span>
+          </label>
+        </div>
+
         <div id="card-list" class="card-list"></div>
-        <a id="load-more" class="load-more thin" href="javascript: void(0);">Load more</a>
+
+        <a id="load-more" class="load-more thin" href="javascript: void(0);"
+          >Load more</a
+        >
       </section>
     </main>
 

@@ -110,83 +110,74 @@
   display: block;
 }
 
-.toggle {
+.switch {
+  position: relative;
+
   display: inline-flex;
-  flex-flow: row;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 
   cursor: pointer;
 
-  > span {
-    opacity: 0.85;
-    font-style: italic;
+  > input {
+    width: 2rem;
+    height: 0;
+    margin: 0;
+
+    opacity: 0;
   }
 
-  > input {
-    appearance: none;
+  > .slider {
+    position: absolute;
 
-    width: 3rem;
-    height: fit-content;
-    margin: 0;
+    width: 2rem;
+    height: 1rem;
 
     background-color: base.$background-color-error;
 
     border: solid 2px base.$border-color-error;
-    border-radius: 2rem;
+    border-radius: 1rem;
 
     transition: ease-out 150ms;
-
-    cursor: pointer;
   }
 
-  > input:hover,
-  > input:focus {
-    background-color: base.$border-color-error;
-    border: solid 2px base.$color-error;
-  }
-
-  > input:checked {
+  > input:checked + .slider {
     background-color: base.$background-color-success;
     border: solid 2px base.$border-color-success;
   }
 
-  > input:checked:hover,
-  > input:checked:focus {
-    background-color: base.$border-color-success;
-    border: solid 2px base.$color-success;
-  }
+  > .slider::before {
+    position: absolute;
+    top: 12.5%;
+    bottom: 12.5%;
+    left: 6.25%;
+    right: 56.25%;
 
-  > input::before {
-    display: block;
-
-    width: 0.9rem;
-    height: 0.9rem;
-    margin: 0.1rem;
+    // width: 2rem;
+    // height: 1rem;
 
     background-color: base.$color-error;
-    color: base.$background-color-error;
-
-    border-radius: 100%;
+    border-radius: 50%;
 
     transition: ease-out 150ms;
 
-    // font-size: 1rem;
-    // font-weight: 700;
-    // line-height: 0.65rem;
-    // text-align: center;
-
-    // content: '\2013';
-    content: '';
+    content: "";
   }
 
-  > input:checked::before {
-    margin-left: auto;
+  > input:checked + .slider::before {
+    left: 56.26%;
+    right: 6.25%;
 
     background-color: base.$color-success;
-    color: base.$background-color-success;
+  }
 
-    // content: '\2219';
-    content: '';
+  > input:hover + .slider, > input:focus + .slider {
+    background-color: base.$border-color-error;
+    border-color: base.$color-error;
+  }
+
+  > input:hover:checked + .slider, > input:focus:checked + .slider {
+    background-color: base.$border-color-success;
+    border-color: base.$color-success;
   }
 }

@@ -1,8 +1,11 @@
+$thin-size: 45rem;
+$wide-size: 70rem;
+
 .thin {
-  max-width: 45rem;
+  max-width: $thin-size;
   margin-inline: auto;
 }
 .wide {
-  max-width: 70rem;
+  max-width: $wide-size;
   margin-inline: auto;
 }

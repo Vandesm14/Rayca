@@ -103,7 +103,11 @@ infScrollToggle.addEventListener('change', (e) => {
     infiniteScrollEnabled = false;
     document.removeEventListener('scroll', infiniteScroll);
   }
+  localStorage.setItem("inf-scroll", String(infiniteScrollEnabled));
 });
+if (localStorage.getItem("inf-scroll") !== null) {
+  infiniteScrollEnabled = Boolean(localStorage.getItem("inf-scroll"));
+}
 if (infScrollToggle.checked) {
   infiniteScrollEnabled = true;
   document.addEventListener('scroll', infiniteScroll, { passive: true });

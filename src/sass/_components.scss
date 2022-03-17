@@ -1,19 +1,16 @@
 @use './base';
 
 .card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, base.$card-width);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 
-  place-content: center;
-  gap: 1rem;
-
-  > * {
-    margin: 1rem;
-  }
+  gap: 2rem;
 }
 
 .card {
-  padding: 1rem;
+  margin: 1rem;
+  padding: 1rem 1.5rem;
 
   text-align: center;
 
@@ -43,8 +40,8 @@
     display: block;
   }
 
-  > a + a {
-    margin-left: 1rem;
+  > a {
+    cursor: copy;
   }
 }
 
@@ -152,9 +149,6 @@
     bottom: 12.5%;
     left: 6.25%;
     right: 56.25%;
-
-    // width: 2rem;
-    // height: 1rem;
 
     background-color: base.$color-error;
     border-radius: 50%;

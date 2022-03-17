@@ -171,13 +171,7 @@
     background-color: base.$color-success;
   }
 
-  > input:hover + .slider, > input:focus + .slider {
-    background-color: base.$border-color-error;
-    border-color: base.$color-error;
-  }
-
-  > input:hover:checked + .slider, > input:focus:checked + .slider {
-    background-color: base.$border-color-success;
-    border-color: base.$color-success;
+  > input:focus-visible + .slider {
+    outline: auto;
   }
 }

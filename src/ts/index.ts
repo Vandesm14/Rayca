@@ -20,8 +20,16 @@ function card(seq: number[]): HTMLElement {
   card.classList.add('card');
 
   const id = document.createElement('p');
-  id.innerText =
-    '#' + seq.slice(0, 8).reduce((p, c, i) => p + String(c + i), '');
+  crypto.subtle
+    .digest('SHA-256', Uint8Array.from(RAYCA.compress(seq)))
+    .then((buf) =>
+      Array.from(new Uint8Array(buf))
+        .reduce((a, b) => a + b.toString(16), '')
+    )
+    .then((hash) => {
+      id.innerText = '#' + hash.slice(0, 8);
+      id.title = "#" + hash;
+    });
   card.append(id);
 
   const art = document.createElement('code');

@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "build": "deno bundle ./script.ts ./script.bundle.js",
+    "build:watch": "deno task build -- --watch"
+  },
+  "compilerOptions": {
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable"
+    ]
+  }
+}

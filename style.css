@@ -1,0 +1,163 @@
+@import "npm:@csstools/normalize.css";
+@import "./typography.css";
+
+:root {
+  --head-font-family: "Montserrat", "system-ui", "-apple-system", "Segoe UI",
+    "Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif;
+  --body-font-family: "Space Mono", "Dank Mono", "Operator Mono", "Inconsolata",
+    "Fira Mono", "ui-monospace", "SF Mono", "Monaco", "Droid Sans Mono",
+    "Source Code Pro", monospace;
+  --head-line-height: 1.2;
+  --body-line-height: 1.4;
+
+  --colour-primary: 0, 0%, 99.6%;
+  --colour-secondary: 0, 0%, 79.6%;
+  --colour-accent: 271.3, 68.5%, 32.4%;
+
+  --text-colour: 0, 0%, 14.1%;
+
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 1rem;
+  --size-4: 1.5rem;
+  --size-5: 2rem;
+
+  --opacity-1: 1;
+  --opacity-2: 0.85;
+
+  --size-content-1: 60ch;
+  --size-content-2: 90ch;
+
+  --transition-duration: 100ms;
+
+  font-size: 18px;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduced) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin-block: var(--size-5);
+  padding-inline: var(--size-3);
+
+  background-color: hsl(var(--colour-primary));
+  color: hsl(var(--text-colour));
+
+  font-family: var(--body-font-family);
+  line-height: var(--body-line-height);
+}
+.thin,
+body > * {
+  max-inline-size: var(--size-content-1);
+  margin-inline: auto;
+}
+.wide {
+  max-inline-size: var(--size-content-2);
+  margin-inline: auto;
+}
+
+h1,
+h2 {
+  font-family: var(--head-font-family);
+  line-height: var(--head-line-height);
+
+  text-transform: uppercase;
+}
+
+a, button {
+  color: hsla(var(--colour-accent), var(--opacity-2));
+}
+a:hover,
+a:focus,
+button:hover,
+button:focus {
+  color: hsla(var(--colour-accent), var(--opacity-1));
+}
+
+input {
+  margin-block: var(--size-3);
+  accent-color: hsl(var(--colour-accent));
+  cursor: pointer;
+}
+
+button {
+  margin-block: var(--size-3);
+
+  background-color: transparent;
+  border: none;
+
+  font: inherit;
+  text-decoration: underline;
+
+  cursor: pointer;
+  user-select: text;
+}
+
+.centre {
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: var(--size-5);
+}
+
+.card {
+  margin: var(--size-2);
+  padding: var(--size-1) var(--size-4);
+
+  text-align: center;
+
+  border: 2px solid hsl(var(--colour-secondary));
+  border-radius: var(--size-1);
+
+  transition: ease-out var(--transition-duration);
+}
+.card:hover,
+.card:focus-within {
+  box-shadow: 0 var(--size-2) var(--size-3) 0 hsl(var(--colour-secondary));
+  transform: scale3d(1.006, 1.006, 1);
+}
+
+.card > button {
+  display: block;
+  margin-inline: auto;
+
+  cursor: copy;
+}
+
+.card > code {
+  display: block;
+
+  width: fit-content;
+  margin: 1rem auto;
+  padding: 0.25rem;
+
+  line-height: 0.6rem;
+
+  border: 2px solid hsl(var(--text-colour));
+}
+
+/* FIXME: find a way to show the whole hash */
+/* .card > button:first-of-type {
+  width: 10ch;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+.card > button:first-of-type:hover,
+.card > button:first-of-type:focus {
+  width: auto;
+  overflow-x: scroll;
+} */

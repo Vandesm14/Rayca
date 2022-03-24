@@ -1,4 +1,4 @@
-/** Modifies plain text sequences. */
+/** Plain text sequences. */
 export class Rayca {
   static BYTE = 8;
 
@@ -16,7 +16,7 @@ export class Rayca {
     width: number,
     height: number,
     chars: string[],
-    random: () => number
+    random: () => number,
   ) {
     this.width = width;
     this.height = height;
@@ -27,7 +27,7 @@ export class Rayca {
   /** Returns the amount of bits needed to store a number `n`. */
   #bitsNeeded(n: number, max: number): number | undefined {
     return Array.from({ length: max }).findIndex(
-      (_, i) => Math.pow(2, i) - 1 >= n
+      (_, i) => Math.pow(2, i) - 1 >= n,
     );
   }
 
@@ -35,7 +35,7 @@ export class Rayca {
   #bitMask(n: number): number {
     return Array.from<number>({ length: n }).reduce(
       (a, _, i) => a | (1 << i),
-      0
+      0,
     );
   }
 
@@ -75,7 +75,8 @@ export class Rayca {
       .map((_, i) => {
         const offset = bitsPerChar * (i % charsPerByte);
         return (
-          (seq[Math.floor(i / charsPerByte)] & (charBitsMask << offset)) >>
+          (seq[Math.floor(i / charsPerByte)] &
+            (charBitsMask << offset)) >>
           offset
         );
       });
@@ -85,8 +86,9 @@ export class Rayca {
   toString(seq: number[]): string {
     return Array.from<string>({ length: seq.length }).reduce(
       (a, _, i) =>
-        a + (i % this.width === 0 && i !== 0 ? '\n' : '') + this.chars[seq[i]],
-      ''
+        a + (i % this.width === 0 && i !== 0 ? "\n" : "") +
+        this.chars[seq[i]],
+      "",
     );
   }
 
@@ -94,8 +96,8 @@ export class Rayca {
   fromString(s: string): number[] {
     return Array.from<number[]>({ length: s.length }).reduce(
       (a, _, i) =>
-        s.charAt(i) !== '\n' ? [...a, this.chars.indexOf(s.charAt(i))] : a,
-      []
+        s.charAt(i) !== "\n" ? [...a, this.chars.indexOf(s.charAt(i))] : a,
+      [],
     );
   }
 
@@ -107,7 +109,7 @@ export class Rayca {
   /** Returns a sequence from the base64 token `s`. */
   fromToken(s: string): number[] {
     return atob(s)
-      .split('')
+      .split("")
       .map((c) => c.charCodeAt(0));
   }
 }

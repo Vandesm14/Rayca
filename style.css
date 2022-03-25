@@ -1,6 +1,3 @@
-@import "npm:@csstools/normalize.css";
-@import "./typography.css";
-
 :root {
   --head-font-family: "Montserrat", "system-ui", "-apple-system", "Segoe UI",
     "Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif;

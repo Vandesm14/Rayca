@@ -156,7 +156,7 @@ function createCardArt(seq) {
 }
 function createCardToken(seq) {
     const token = document.createElement("button");
-    token.innerText = "Own a copy";
+    token.innerText = "Copy";
     const compressed = RAYCA.compress(seq);
     if (compressed !== undefined) {
         const tokenText = RAYCA.toToken(compressed);
@@ -178,12 +178,55 @@ function createCardToken(seq) {
     }
     return token;
 }
-async function createCard(seq) {
+async function createCardViewModal(seq) {
+    const modal = document.createElement("dialog");
+    modal.classList.add("card");
+    const card = await createCard(seq, {
+        modal: false,
+        float: false
+    });
+    modal.append(...card.children);
+    return modal;
+}
+function createCardView(seq, modal) {
+    const view = document.createElement("a");
+    view.innerText = "View";
+    const compressed = RAYCA.compress(seq);
+    if (compressed !== undefined) {
+        const tokenText = RAYCA.toToken(compressed);
+        view.href = `?token=${tokenText}`;
+    } else {
+        view.innerText = "Broken link";
+        console.warn("`Rayca.compress()` is not working");
+    }
+    const openModal = (e)=>{
+        e.preventDefault();
+        modal.showModal();
+    };
+    view.addEventListener("submit", openModal);
+    view.addEventListener("click", openModal);
+    return view;
+}
+async function createCard(seq, options = {
+    modal: true,
+    float: true
+}) {
     const card = document.createElement("div");
     card.classList.add("card");
+    if (options.float) {
+        card.classList.add("--float");
+    }
     card.appendChild(await createCardHash(seq));
     card.appendChild(createCardArt(seq));
-    card.appendChild(createCardToken(seq));
+    const cardBottom = document.createElement("div");
+    cardBottom.classList.add("bottom");
+    cardBottom.appendChild(createCardToken(seq));
+    if (options.modal) {
+        const viewModal = await createCardViewModal(seq);
+        card.appendChild(viewModal);
+        cardBottom.appendChild(createCardView(seq, viewModal));
+    }
+    card.appendChild(cardBottom);
     return card;
 }
 (()=>{

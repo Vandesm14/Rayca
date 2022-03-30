@@ -5,7 +5,7 @@ import { Rayca } from "./rayca.ts";
 //// UTILITIES /////////////////////////////////////////////////////////////////
 
 const SEED = 1337 ^ 0xdeadbeef;
-/** Generates random numbers using mulberry32. */
+// NOTE: uses mulberry32 seeded prng
 const random = (seed: number): (() => number) =>
   () => {
     let t = (seed += 0x6d2b79f5);
@@ -107,7 +107,7 @@ function createCardArt(seq: number[]): HTMLElement {
 function createCardToken(seq: number[]): HTMLElement {
   const token = document.createElement("button");
 
-  token.innerText = "Own a copy";
+  token.innerText = "Copy";
 
   const compressed = RAYCA.compress(seq);
   if (compressed !== undefined) {
@@ -133,13 +133,68 @@ function createCardToken(seq: number[]): HTMLElement {
   return token;
 }
 
-async function createCard(seq: number[]): Promise<HTMLElement> {
+async function createCardViewModal(seq: number[]): Promise<HTMLElement> {
+  const modal = document.createElement("dialog");
+  modal.classList.add("card");
+
+  const card = await createCard(seq, { modal: false, float: false });
+  modal.append(...card.children);
+
+  return modal;
+}
+
+function createCardView(seq: number[], modal: HTMLElement): HTMLElement {
+  const view = document.createElement("a");
+  view.innerText = "View";
+
+  const compressed = RAYCA.compress(seq);
+  if (compressed !== undefined) {
+    const tokenText = RAYCA.toToken(compressed);
+    view.href = `?token=${tokenText}`;
+  } else {
+    view.innerText = "Broken link";
+    console.warn("`Rayca.compress()` is not working");
+  }
+
+  const openModal = (e: Event) => {
+    e.preventDefault();
+    // @ts-expect-error dialog is very new
+    modal.showModal();
+  };
+
+  view.addEventListener("submit", openModal);
+  view.addEventListener("click", openModal);
+
+  return view;
+}
+
+async function createCard(
+  seq: number[],
+  options = {
+    modal: true,
+    float: true,
+  },
+): Promise<HTMLElement> {
   const card = document.createElement("div");
   card.classList.add("card");
+  if (options.float) {
+    card.classList.add("--float");
+  }
 
   card.appendChild(await createCardHash(seq));
   card.appendChild(createCardArt(seq));
-  card.appendChild(createCardToken(seq));
+
+  const cardBottom = document.createElement("div");
+  cardBottom.classList.add("bottom");
+
+  cardBottom.appendChild(createCardToken(seq));
+  if (options.modal) {
+    const viewModal = await createCardViewModal(seq);
+    card.appendChild(viewModal);
+    cardBottom.appendChild(createCardView(seq, viewModal));
+  }
+
+  card.appendChild(cardBottom);
 
   return card;
 }

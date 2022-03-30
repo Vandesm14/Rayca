@@ -7,11 +7,11 @@
   --head-line-height: 1.2;
   --body-line-height: 1.4;
 
-  --colour-primary: 0, 0%, 99.6%;
-  --colour-secondary: 0, 0%, 79.6%;
-  --colour-accent: 271.3, 68.5%, 32.4%;
+  --colour-primary: 0 0% 99.6%;
+  --colour-secondary: 0 0% 79.6%;
+  --colour-accent: 271.3 68.5% 32.4%;
 
-  --text-colour: 0, 0%, 14.1%;
+  --text-colour: 0 0% 14.1%;
 
   --size-1: 0.25rem;
   --size-2: 0.5rem;
@@ -21,6 +21,7 @@
 
   --opacity-1: 1;
   --opacity-2: 0.85;
+  --opacity-3: 0.40;
 
   --size-content-1: 60ch;
   --size-content-2: 90ch;
@@ -61,6 +62,12 @@ body > * {
   margin-inline: auto;
 }
 
+dialog::backdrop {
+  /* TODO: seems to be broken at least in firefox? */
+  /* background-color: hsl(var(--text-colour) / var(--opacity-3)); */
+  background-color: hsl(0 0% 14.1% / --opacity-3);
+}
+
 h1,
 h2 {
   font-family: var(--head-font-family);
@@ -69,24 +76,25 @@ h2 {
   text-transform: uppercase;
 }
 
-a, button {
-  color: hsla(var(--colour-accent), var(--opacity-2));
+a, button, input {
+  margin-block: 1rem;
+
+  color: hsl(var(--colour-accent) / var(--opacity-2));
+  accent-color: hsl(var(--colour-accent));
+
+  cursor: pointer;
 }
 a:hover,
 a:focus,
 button:hover,
-button:focus {
-  color: hsla(var(--colour-accent), var(--opacity-1));
-}
-
-input {
-  margin-block: var(--size-3);
-  accent-color: hsl(var(--colour-accent));
-  cursor: pointer;
+button:focus,
+input:hover,
+input:focus {
+  color: hsl(var(--colour-accent) / var(--opacity-1));
 }
 
 button {
-  margin-block: var(--size-3);
+  padding: 0;
 
   background-color: transparent;
   border: none;
@@ -94,7 +102,6 @@ button {
   font: inherit;
   text-decoration: underline;
 
-  cursor: pointer;
   user-select: text;
 }
 
@@ -108,9 +115,9 @@ button {
   justify-content: center;
   gap: var(--size-5);
 }
+.list > .card { margin: var(--size-2); }
 
 .card {
-  margin: var(--size-2);
   padding: var(--size-1) var(--size-4);
 
   text-align: center;
@@ -120,16 +127,25 @@ button {
 
   transition: ease-out var(--transition-duration);
 }
-.card:hover,
-.card:focus-within {
+.card.--float:hover,
+.card.--float:focus-within {
   box-shadow: 0 var(--size-2) var(--size-3) 0 hsl(var(--colour-secondary));
   transform: scale3d(1.006, 1.006, 1);
 }
 
-.card > button {
-  display: block;
-  margin-inline: auto;
+dialog.card {
+  transform: scale3d(1.506, 1.506, 1);
+}
 
+.card div.bottom {
+  display: flex;
+  flex-flow: row nowrap;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card button {
   cursor: copy;
 }
 
@@ -137,7 +153,7 @@ button {
   display: block;
 
   width: fit-content;
-  margin: 1rem auto;
+  margin-inline: auto;
   padding: 0.25rem;
 
   line-height: 0.6rem;

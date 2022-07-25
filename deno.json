@@ -1,7 +1,7 @@
 {
   "tasks": {
-    "build": "deno bundle ./script.ts ./script.bundle.js",
-    "build:watch": "deno task build -- --watch"
+    "build": "deno bundle --check=all ./script.ts ./script.bundle.js",
+    "dev": "deno task build --watch"
   },
   "compilerOptions": {
     "lib": [

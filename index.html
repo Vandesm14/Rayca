@@ -1,131 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>RAYCA, the only Random ASCII You Can Admire</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="typography.css" />
-    <link rel="stylesheet" href="style.css" />
+  <title>RAYCA, freely mintable NFTs</title>
 
-    <script type="module" defer src="script.bundle.js"></script>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/Inter.woff2") format("woff2-variations");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Space Mono";
+      src: url("assets/SpaceMono.ttf") format("truetype");
+      font-display: swap;
+    }
 
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="RAYCA" />
-    <meta
-      name="description"
-      content="We are the world's largest and only marketplace for plain text NFTs that you can say you own."
-    />
+    /* *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    } */
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rayca.art/" />
-    <meta property="og:title" content="RAYCA" />
-    <meta
-      property="og:description"
-      content="We are the world's largest and only marketplace for plain text NFTs that you can say you own."
-    />
-    <meta property="og:image" content="https://rayca.art/assets/banner.png" />
+    :root {
+      font-size: 18px;
+      scroll-behavior: smooth;
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://rayca.art/" />
-    <meta property="twitter:title" content="RAYCA" />
-    <meta
-      property="twitter:description"
-      content="We are the world's largest and only marketplace for plain text NFTs that you can say you own."
-    />
-    <meta property="twitter:image" content="https://rayca.art/assets/banner.png" />
-  </head>
+      --cl-60: 0 0% 99.6%;
+      --cl-60-accent: 0 0% 89.6%;
+      --cl-30: 0 0% 14.1%;
+      --cl-10: 354 67% 56.1%;
+      --cl-10-accent: 317.3 61.2% 33.3%;
 
-  <body>
-    <header>
-      <h1>Discover and collect computer-generated NFTs</h1>
-      <p>
-        We are the world's <strong>only</strong> collection of
-        <b>plain text</b> NFTs that you can <em>say</em> you own.
-      </p>
-      <a href="#our-art">&darr; See our art &darr;</a>
-    </header>
+      --sp-1: 0.25rem;
+      --sp-2: 0.5rem;
+      --sp-3: 1rem;
+      --sp-4: 1.25rem;
+      --sp-5: 1.5rem;
+      --sp-6: 1.75rem;
+      --sp-7: 2rem;
+      --sp-8: 3rem;
+      --sp-9: 4rem;
+      --sp-10: 5rem;
+      --sp-11: 7.5rem;
+      --sp-12: 10rem;
+      --sp-13: 15rem;
+      --sp-14: 20rem;
+      --sp-15: 30rem;
+      --sp-16: 65rem;
 
-    <main class="wide">
-      <section class="thin" aria-labelledby="what-is-rayca">
-        <h2>
-          <a href="#what-is-rayca">#</a>
-          <span id="what-is-rayca">What is RAYCA?</span>
-        </h2>
-        <p>
-          <b>
-            <def><abbr title="Random ASCII You Can Admire">RAYCA</abbr></def>
-          </b>
-          (<b>R</b>andom <b>A</b>SCII <b>Y</b>ou <b>C</b>an <b>A</b>dmire)
-          provides the best <i>automatically curated</i> collection of
-          <i>procedurally generated</i> plain text art for your eyes to enjoy.
-          Every piece goes through an
-          <i>extensively tested algorithm</i> purpose-made to create
-          <strong>practically identical</strong> art.
-        </p>
-        <p>
-          We supply <strong>pseudo-random tokens</strong> produced from these
-          art pieces that you can <strong>own</strong> a <i>copy</i> of and view
-          on this site <strong>exclusively</strong> &mdash; be sure to collect
-          yours while they're still available.
-        </p>
-        <p>
-          The road ahead seems prosperous, with the <em>fever dream</em> of a
-          plain text <strong>metaverse</strong> on the horizon, founded on a
-          <strong>pyramid of profits</strong> the likes of which we have
-          <i>never</i> seen before.
-        </p>
-      </section>
+      --ff-sans: "Inter", ui-serif, serif;
+      --ff-mono: "Space Mono", ui-monospace, monospace;
+    }
 
-      <section class="thin" aria-labelledby="who-is-rayca">
-        <h2>
-          <a href="#who-is-rayca">#</a>
-          <span id="who-is-rayca">Who is RAYCA?</span>
-        </h2>
-        <p>
-          We are <a href="https://thedevbird.com">Shane</a> and
-          <a href="https://leonski.dev">Leon</a>, a couple of friends who enjoy
-          the <i>simplicity</i> (it's not as simple as you think) of
-          <b>plain text</b> and want to share that with you.
-        </p>
-      </section>
+    body {
+      margin: 0;
+      padding: 0;
 
-      <section class="wide" aria-labelledby="our-art">
-        <div class="thin">
-          <h2>
-            <a href="#our-art">#</a>
-            <span id="our-art">Our art</span>
-          </h2>
-          <p>
-            <em id="art-list-text">
-              You might have <b>JavaScript</b> disabled, which we use to display
-              our art.
-            </em>
-          </p>
-          <label class="switch">
-            <input id="infinite-scroll" type="checkbox">
-            Infinite Scroll
-          </label>
+      color: hsl(var(--cl-30));
+
+      font-family: var(--ff-sans);
+      line-height: 1.4;
+    }
+
+    header,
+    main,
+    footer {
+      padding-inline: var(--sp-7);
+    }
+
+    header,
+    footer {
+      margin-block: var(--sp-10);
+    }
+
+    header {
+      text-align: center;
+    }
+
+    h1,
+    h2,
+    h3 {
+      /* font-weight: 900; */
+      line-height: 1.2;
+    }
+
+    pre {
+      font-family: var(--ff-mono);
+    }
+
+    dfn {
+      font-style: inherit;
+    }
+
+    .thin {
+      max-width: var(--sp-15);
+      margin-inline: auto;
+    }
+
+    .wide {
+      max-width: var(--sp-16);
+      margin-inline: auto;
+    }
+
+    .lg-text {
+      background-image: linear-gradient(135deg, hsl(var(--cl-10)), hsl(var(--cl-10-accent)));
+      background-clip: text;
+      color: transparent;
+    }
+
+    #nfts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, var(--sp-13));
+      gap: var(--sp-7);
+    }
+
+    #nfts > div {
+      border: solid 2px hsl(var(--cl-60-accent));
+      border-radius: var(--sp-1);
+
+      /* box-shadow: 0 0 var(--sp-1) hsl(var(--cl-30) / 0.25); */
+      transition: ease-out 150ms;
+
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+    }
+
+    #nfts > div:hover {
+      box-shadow: 0 0 var(--sp-2) hsl(var(--cl-30) / 0.25);
+      /* transform: scale3d(1.006, 1.006, 1); */
+    }
+
+    #nfts > div > pre {
+      width: 10ch;
+      height: 10ch;
+
+      margin-inline: auto;
+
+      font-size: 1.75rem;
+      line-height: 0.6;
+
+      grid-row: 1 / 4;
+
+      transition: ease-out 150ms;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="thin">
+    <h1>
+      <span class="lg-text">Endless NFTs</span> minted without the illusion of
+      scarcity
+    </h1>
+
+    <p>
+      <dfn>RAYCA</dfn> is the newest marketplace for computer-generated NFTs to
+      satisfy all of your copy-pasta needs.
+    </p>
+  </header>
+
+  <main class="wide">
+    <!-- <section aria-labelledby="mint">
+      <h2 id="mint">Mint</h2>
+    </section> -->
+
+    <section aria-labelledby="explore">
+      <h2 id="explore">Explore</h2>
+
+      <div id="nfts">
+        <div>
+          <pre>   -=--  =
+==  = == =
+- ==-  = -
+=====----=
+=  =------
+==== = ==-
+  =-  =- -
+==- =- ---
+  ==-= - -
+  ------ =</pre>
+          <div></div>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <div id="art-list" class="list"></div>
+  <footer class="wide">
+    <p>
+      <small>
+        Copyright &copy; Leon Davis & Shane Vandegrift
+        &middot;
+        Yes, this is <b>satire</b>
+      </small>
+    </p>
+  </footer>
+</body>
 
-        <div class="thin centre">
-          <button id="load-more">Load more</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="centre">
-      <p>
-        Created by <a href="https://thedevbird.com">Shane</a> and
-        <a href="https://leonski.dev">Leon</a>
-        &bullet; Yes, it's satire &bullet;
-        <a href="https://github.com/Vandesm14/Rayca">GitHub</a>
-      </p>
-    </footer>
-  </body>
 </html>

@@ -1,259 +1,261 @@
-//// IMPORTS ///////////////////////////////////////////////////////////////////
+// //// IMPORTS ///////////////////////////////////////////////////////////////////
 
-import { Rayca } from "./rayca.ts";
+// import { Rayca } from "./rayca.ts";
 
-//// UTILITIES /////////////////////////////////////////////////////////////////
+// //// UTILITIES /////////////////////////////////////////////////////////////////
 
-const SEED = 1337 ^ 0xdeadbeef;
-// NOTE: uses mulberry32 seeded prng
-const random = (seed: number): (() => number) =>
-  () => {
-    let t = (seed += 0x6d2b79f5);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
+// const SEED = 1337 ^ 0xdeadbeef;
+// // NOTE: uses mulberry32 seeded prng
+// const random = (seed: number): (() => number) =>
+//   () => {
+//     let t = (seed += 0x6d2b79f5);
+//     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+//     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+//   };
 
-async function copyToClipboard(text: string): Promise<boolean> {
-  if (navigator?.clipboard !== undefined) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch {
-      return false;
-    }
-  } else {
-    return false;
-  }
-}
+// async function copyToClipboard(text: string): Promise<boolean> {
+//   if (navigator?.clipboard !== undefined) {
+//     try {
+//       await navigator.clipboard.writeText(text);
+//       return true;
+//     } catch {
+//       return false;
+//     }
+//   } else {
+//     return false;
+//   }
+// }
 
-//// CONSTANTS /////////////////////////////////////////////////////////////////
+// //// CONSTANTS /////////////////////////////////////////////////////////////////
 
-const RAYCA = new Rayca(10, 10, [" ", "-", "="], random(SEED));
+// const RAYCA = new Rayca(10, 10, [" ", "-", "="], random(SEED));
 
-const ART_LIST = document.getElementById("art-list") as (HTMLDivElement | null);
-const LOAD_MORE = document.getElementById(
-  "load-more",
-) as (HTMLButtonElement | null);
-const INFINITE_SCROLL = document.getElementById(
-  "infinite-scroll",
-) as (HTMLInputElement | null);
+// console.log(RAYCA.toString(RAYCA.generate()));
 
-if (ART_LIST === null || LOAD_MORE === null || INFINITE_SCROLL === null) {
-  throw new Error("a required element does not exists");
-}
+// const ART_LIST = document.getElementById("art-list") as (HTMLDivElement | null);
+// const LOAD_MORE = document.getElementById(
+//   "load-more",
+// ) as (HTMLButtonElement | null);
+// const INFINITE_SCROLL = document.getElementById(
+//   "infinite-scroll",
+// ) as (HTMLInputElement | null);
 
-const COPY_TEXT_TIMEOUT = 2000;
-const LOAD_MORE_BATCH = 16;
-const INFINITE_SCROLL_OFFSET = 400;
+// if (ART_LIST === null || LOAD_MORE === null || INFINITE_SCROLL === null) {
+//   throw new Error("a required element does not exists");
+// }
 
-//// CARDS /////////////////////////////////////////////////////////////////////
+// const COPY_TEXT_TIMEOUT = 2000;
+// const LOAD_MORE_BATCH = 16;
+// const INFINITE_SCROLL_OFFSET = 400;
 
-async function createCardHash(seq: number[]): Promise<HTMLElement> {
-  const hash = document.createElement("button");
+// //// CARDS /////////////////////////////////////////////////////////////////////
 
-  const compressed = RAYCA.compress(seq);
-  if (compressed !== undefined) {
-    if (crypto?.subtle?.digest !== undefined) {
-      try {
-        const digest = await crypto.subtle.digest(
-          "SHA-256",
-          Uint8Array.from(compressed),
-        );
-        const hashText = Array.from(new Uint8Array(digest))
-          .reduce((a, b) => a + b.toString(16), "");
-        // FIXME: find a way to show the whole hash
-        const hashTetShort = hashText.slice(0, 7);
+// async function createCardHash(seq: number[]): Promise<HTMLElement> {
+//   const hash = document.createElement("button");
 
-        hash.innerText = "#" + hashTetShort;
+//   const compressed = RAYCA.compress(seq);
+//   if (compressed !== undefined) {
+//     if (crypto?.subtle?.digest !== undefined) {
+//       try {
+//         const digest = await crypto.subtle.digest(
+//           "SHA-256",
+//           Uint8Array.from(compressed),
+//         );
+//         const hashText = Array.from(new Uint8Array(digest))
+//           .reduce((a, b) => a + b.toString(16), "");
+//         // FIXME: find a way to show the whole hash
+//         const hashTetShort = hashText.slice(0, 7);
 
-        const copyHash = async () => {
-          const original = hash.innerText;
-          if (await copyToClipboard(hashText)) {
-            hash.innerText = "Copied";
-          } else {
-            hash.innerText = "Not copied";
-          }
-          setTimeout(() => hash.innerText = original, COPY_TEXT_TIMEOUT);
-        };
+//         hash.innerText = "#" + hashTetShort;
 
-        hash.addEventListener("submit", copyHash);
-        hash.addEventListener("click", copyHash);
-      } catch (error) {
-        hash.innerText = "Broken hash";
-        console.warn(error);
-      }
-    } else {
-      hash.innerText = "Broken hash";
-      console.warn("`crypto.subtle.digest()` does not exist");
-    }
-  } else {
-    hash.innerText = "Broken hash";
-    console.warn("`Rayca.compress()` is not working");
-  }
+//         const copyHash = async () => {
+//           const original = hash.innerText;
+//           if (await copyToClipboard(hashText)) {
+//             hash.innerText = "Copied";
+//           } else {
+//             hash.innerText = "Not copied";
+//           }
+//           setTimeout(() => hash.innerText = original, COPY_TEXT_TIMEOUT);
+//         };
 
-  return hash;
-}
+//         hash.addEventListener("submit", copyHash);
+//         hash.addEventListener("click", copyHash);
+//       } catch (error) {
+//         hash.innerText = "Broken hash";
+//         console.warn(error);
+//       }
+//     } else {
+//       hash.innerText = "Broken hash";
+//       console.warn("`crypto.subtle.digest()` does not exist");
+//     }
+//   } else {
+//     hash.innerText = "Broken hash";
+//     console.warn("`Rayca.compress()` is not working");
+//   }
 
-function createCardArt(seq: number[]): HTMLElement {
-  const art = document.createElement("code");
+//   return hash;
+// }
 
-  art.innerHTML = RAYCA.toString(seq)
-    .replaceAll("\n", "<br>")
-    .replaceAll(" ", "&nbsp;");
+// function createCardArt(seq: number[]): HTMLElement {
+//   const art = document.createElement("code");
 
-  return art;
-}
+//   art.innerHTML = RAYCA.toString(seq)
+//     .replaceAll("\n", "<br>")
+//     .replaceAll(" ", "&nbsp;");
 
-function createCardToken(seq: number[]): HTMLElement {
-  const token = document.createElement("button");
+//   return art;
+// }
 
-  token.innerText = "Copy";
+// function createCardToken(seq: number[]): HTMLElement {
+//   const token = document.createElement("button");
 
-  const compressed = RAYCA.compress(seq);
-  if (compressed !== undefined) {
-    const tokenText = RAYCA.toToken(compressed);
+//   token.innerText = "Copy";
 
-    const copyToken = async () => {
-      const original = token.innerText;
-      if (await copyToClipboard(tokenText)) {
-        token.innerText = "Copied";
-      } else {
-        token.innerText = "Not copied";
-      }
-      setTimeout(() => token.innerText = original, COPY_TEXT_TIMEOUT);
-    };
+//   const compressed = RAYCA.compress(seq);
+//   if (compressed !== undefined) {
+//     const tokenText = RAYCA.toToken(compressed);
 
-    token.addEventListener("submit", copyToken);
-    token.addEventListener("click", copyToken);
-  } else {
-    token.innerText = "Broken copy";
-    console.warn("`Rayca.compress()` is not working");
-  }
+//     const copyToken = async () => {
+//       const original = token.innerText;
+//       if (await copyToClipboard(tokenText)) {
+//         token.innerText = "Copied";
+//       } else {
+//         token.innerText = "Not copied";
+//       }
+//       setTimeout(() => token.innerText = original, COPY_TEXT_TIMEOUT);
+//     };
 
-  return token;
-}
+//     token.addEventListener("submit", copyToken);
+//     token.addEventListener("click", copyToken);
+//   } else {
+//     token.innerText = "Broken copy";
+//     console.warn("`Rayca.compress()` is not working");
+//   }
 
-async function createCardViewModal(seq: number[]): Promise<HTMLElement> {
-  const modal = document.createElement("dialog");
-  modal.classList.add("card");
+//   return token;
+// }
 
-  const card = await createCard(seq, { modal: false, float: false });
-  modal.append(...card.children);
+// async function createCardViewModal(seq: number[]): Promise<HTMLElement> {
+//   const modal = document.createElement("dialog");
+//   modal.classList.add("card");
 
-  return modal;
-}
+//   const card = await createCard(seq, { modal: false, float: false });
+//   modal.append(...card.children);
 
-function createCardView(seq: number[], modal: HTMLElement): HTMLElement {
-  const view = document.createElement("a");
-  view.innerText = "View";
+//   return modal;
+// }
 
-  const compressed = RAYCA.compress(seq);
-  if (compressed !== undefined) {
-    const tokenText = RAYCA.toToken(compressed);
-    view.href = `?token=${tokenText}`;
-  } else {
-    view.innerText = "Broken link";
-    console.warn("`Rayca.compress()` is not working");
-  }
+// function createCardView(seq: number[], modal: HTMLElement): HTMLElement {
+//   const view = document.createElement("a");
+//   view.innerText = "View";
 
-  const openModal = (e: Event) => {
-    e.preventDefault();
-    // @ts-expect-error dialog is very new
-    modal.showModal();
-  };
+//   const compressed = RAYCA.compress(seq);
+//   if (compressed !== undefined) {
+//     const tokenText = RAYCA.toToken(compressed);
+//     view.href = `?token=${tokenText}`;
+//   } else {
+//     view.innerText = "Broken link";
+//     console.warn("`Rayca.compress()` is not working");
+//   }
 
-  view.addEventListener("submit", openModal);
-  view.addEventListener("click", openModal);
+//   const openModal = (e: Event) => {
+//     e.preventDefault();
+//     // @ts-expect-error dialog is very new
+//     modal.showModal();
+//   };
 
-  return view;
-}
+//   view.addEventListener("submit", openModal);
+//   view.addEventListener("click", openModal);
 
-async function createCard(
-  seq: number[],
-  options = {
-    modal: true,
-    float: true,
-  },
-): Promise<HTMLElement> {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  if (options.float) {
-    card.classList.add("--float");
-  }
+//   return view;
+// }
 
-  card.appendChild(await createCardHash(seq));
-  card.appendChild(createCardArt(seq));
+// async function createCard(
+//   seq: number[],
+//   options = {
+//     modal: true,
+//     float: true,
+//   },
+// ): Promise<HTMLElement> {
+//   const card = document.createElement("div");
+//   card.classList.add("card");
+//   if (options.float) {
+//     card.classList.add("--float");
+//   }
 
-  const cardBottom = document.createElement("div");
-  cardBottom.classList.add("bottom");
+//   card.appendChild(await createCardHash(seq));
+//   card.appendChild(createCardArt(seq));
 
-  cardBottom.appendChild(createCardToken(seq));
-  if (options.modal) {
-    const viewModal = await createCardViewModal(seq);
-    card.appendChild(viewModal);
-    cardBottom.appendChild(createCardView(seq, viewModal));
-  }
+//   const cardBottom = document.createElement("div");
+//   cardBottom.classList.add("bottom");
 
-  card.appendChild(cardBottom);
+//   cardBottom.appendChild(createCardToken(seq));
+//   if (options.modal) {
+//     const viewModal = await createCardViewModal(seq);
+//     card.appendChild(viewModal);
+//     cardBottom.appendChild(createCardView(seq, viewModal));
+//   }
 
-  return card;
-}
+//   card.appendChild(cardBottom);
 
-//// DOCUMENT LOADED ///////////////////////////////////////////////////////////
+//   return card;
+// }
 
-// NOTE: using an annonymous function to not pollute the global scope
-(() => {
-  // changes text to show whether javascript is enabled
+// //// DOCUMENT LOADED ///////////////////////////////////////////////////////////
 
-  const ART_LIST_TEXT = document.getElementById("art-list-text");
-  if (ART_LIST_TEXT !== null) {
-    ART_LIST_TEXT.innerText = "Sorted by randomness";
-  }
+// // NOTE: using an annonymous function to not pollute the global scope
+// (() => {
+//   // changes text to show whether javascript is enabled
 
-  // loads more cards on the page
+//   const ART_LIST_TEXT = document.getElementById("art-list-text");
+//   if (ART_LIST_TEXT !== null) {
+//     ART_LIST_TEXT.innerText = "Sorted by randomness";
+//   }
 
-  const loadMore = async () => {
-    for (let i = 0; i < LOAD_MORE_BATCH; i++) {
-      ART_LIST.appendChild(await createCard(RAYCA.generate()));
-    }
-  };
-  loadMore();
+//   // loads more cards on the page
 
-  LOAD_MORE.addEventListener("submit", loadMore);
-  LOAD_MORE.addEventListener("click", loadMore);
+//   const loadMore = async () => {
+//     for (let i = 0; i < LOAD_MORE_BATCH; i++) {
+//       ART_LIST.appendChild(await createCard(RAYCA.generate()));
+//     }
+//   };
+//   loadMore();
 
-  // infinite scrolling to load more cards
+//   LOAD_MORE.addEventListener("submit", loadMore);
+//   LOAD_MORE.addEventListener("click", loadMore);
 
-  const infiniteScroll = {
-    _: Boolean(JSON.parse(localStorage.getItem("infiniteScroll") ?? "false")),
-    get enabled(): boolean {
-      return this._;
-    },
-    set enabled(to: boolean) {
-      this._ = to;
-      localStorage.setItem("infiniteScroll", JSON.stringify(this._));
-    },
-    onscroll() {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - INFINITE_SCROLL_OFFSET) {
-        loadMore();
-      }
-    },
-  };
+//   // infinite scrolling to load more cards
 
-  INFINITE_SCROLL.checked = infiniteScroll.enabled;
-  if (infiniteScroll.enabled) {
-    document.addEventListener("scroll", infiniteScroll.onscroll);
-  }
+//   const infiniteScroll = {
+//     _: Boolean(JSON.parse(localStorage.getItem("infiniteScroll") ?? "false")),
+//     get enabled(): boolean {
+//       return this._;
+//     },
+//     set enabled(to: boolean) {
+//       this._ = to;
+//       localStorage.setItem("infiniteScroll", JSON.stringify(this._));
+//     },
+//     onscroll() {
+//       const { scrollTop, scrollHeight, clientHeight } =
+//         document.documentElement;
+//       if (scrollTop + clientHeight >= scrollHeight - INFINITE_SCROLL_OFFSET) {
+//         loadMore();
+//       }
+//     },
+//   };
 
-  INFINITE_SCROLL.addEventListener("change", () => {
-    if (infiniteScroll.enabled && !INFINITE_SCROLL.checked) {
-      infiniteScroll.enabled = false;
-      document.removeEventListener("scroll", infiniteScroll.onscroll);
-    } else if (!infiniteScroll.enabled && INFINITE_SCROLL.checked) {
-      infiniteScroll.enabled = true;
-      document.addEventListener("scroll", infiniteScroll.onscroll);
-    }
-  });
-})();
+//   INFINITE_SCROLL.checked = infiniteScroll.enabled;
+//   if (infiniteScroll.enabled) {
+//     document.addEventListener("scroll", infiniteScroll.onscroll);
+//   }
+
+//   INFINITE_SCROLL.addEventListener("change", () => {
+//     if (infiniteScroll.enabled && !INFINITE_SCROLL.checked) {
+//       infiniteScroll.enabled = false;
+//       document.removeEventListener("scroll", infiniteScroll.onscroll);
+//     } else if (!infiniteScroll.enabled && INFINITE_SCROLL.checked) {
+//       infiniteScroll.enabled = true;
+//       document.addEventListener("scroll", infiniteScroll.onscroll);
+//     }
+//   });
+// })();
